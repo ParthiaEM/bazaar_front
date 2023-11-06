@@ -7,10 +7,12 @@ import LightBulb from '../images/bulbmeter/light.svg';
 import LighterBulb from '../images/bulbmeter/lighter.svg';
 import { useState } from 'react';
 import Registration from './Registration';
+import Login from './Login';
 
 export default function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [openRegist, setOpenRegist] = useState(false)
+    const [openRegist, setOpenRegist] = useState(false);
+    const [openLogin, setOpenLogin] = useState(false);
 
     return (
         <SHeader>
@@ -24,7 +26,8 @@ export default function Header() {
                 </Wrap> :
                 <LoginButton onClick={() => setOpenRegist(true)}>로그인</LoginButton>
             }
-            {openRegist && <Registration close={setOpenRegist} />}
+            {openRegist && <Registration close={setOpenRegist} change={setOpenLogin} />}
+            {openLogin && <Login close={setOpenLogin} change={setOpenRegist} />}
         </SHeader>
     )
 }
