@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 
 export default function App() {
@@ -6,6 +7,8 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
+        <br/>
+        <Footer />
       </BrowserRouter>
     </div>
   );
