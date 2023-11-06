@@ -6,9 +6,11 @@ import NormalBulb from '../images/bulbmeter/normal.svg';
 import LightBulb from '../images/bulbmeter/light.svg';
 import LighterBulb from '../images/bulbmeter/lighter.svg';
 import { useState } from 'react';
+import Registration from './Registration';
 
 export default function Header() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [openRegist, setOpenRegist] = useState(false)
 
     return (
         <SHeader>
@@ -20,9 +22,9 @@ export default function Header() {
                     <AccountInfo><Gray>id</Gray> 님</AccountInfo>
                     <BulbMeter src={toSVG(250)} />
                 </Wrap> :
-                <LoginButton onClick={() => setIsLoggedIn(true)}>로그인</LoginButton>
+                <LoginButton onClick={() => setOpenRegist(true)}>로그인</LoginButton>
             }
-            
+            {openRegist && <Registration close={setOpenRegist} />}
         </SHeader>
     )
 }
