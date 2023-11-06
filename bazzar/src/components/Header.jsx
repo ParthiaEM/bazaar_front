@@ -41,6 +41,7 @@ const SHeader = styled.div`
     background-color: #FDF7F5;
     display: flex;
     justify-content: space-between;
+    font-family: 'Pretendard';
 `;
 
 const SLogo = styled.img`
@@ -56,7 +57,6 @@ const LoginButton = styled.button`
     border: none;
     background: none;
     font-size: 20px;
-    font-family: 'Pretendard';
     cursor: pointer;
 `;
 
@@ -73,7 +73,6 @@ const StartAuctionButton = styled.button`
     border: none;
     background: none;
     font-size: 20px;
-    font-family: 'Pretendard';
     cursor: pointer;
     word-break: keep-all;
 `;
@@ -84,7 +83,6 @@ const AccountInfo = styled.button`
     border: none;
     background: none;
     font-size: 20px;
-    font-family: 'Pretendard';
     cursor: pointer;
     text-decoration: underline;
 `;
