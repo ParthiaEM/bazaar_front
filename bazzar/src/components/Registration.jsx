@@ -1,11 +1,72 @@
 import { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import Reveal from '../images/password/reveal.svg';
 import Hide from '../images/password/hide.svg';
 import Close from '../images/close.svg';
+import { customAxios } from '../customAxios';
 
 export default function Registration(props) {
     const [isHide, setIsHide] = useState(false)
+    const [id, setId] = useState("")
+    const [password, setPassword] = useState("")
+    const [account, setAccount] = useState("")
+    const [bank, setBank] = useState("none")
+    const [alert, setAlert] = useState(0)
+
+    function registration(e) {
+        e.preventDefault()
+
+        if (id.length === 0) {
+            setAlert(1)
+            return
+        } if (password.length === 0) {
+            setAlert(2)
+            return
+        } if (account.length === 0) {
+            setAlert(3)
+            return
+        } if (bank === 'none') {
+            setAlert(4)
+            return
+        }
+
+        const userInfo = {
+            "userId" : id,
+            "userPassword" : password,
+            "userAccount" : bank+' '+account,
+            "lux" : 250,
+        }
+        console.log(userInfo)
+        if (postUserInfo(userInfo)) {
+            setId("")
+            setAlert(5)
+            return
+        }
+
+        setId("")
+        setPassword("")
+        setAccount("")
+        setBank("none")
+        setAlert(0)
+        props.close(false)
+    }
+
+    async function postUserInfo(userInfo) {
+        await customAxios
+            .post("/user/register",
+                new URLSearchParams(userInfo)
+            )
+            .then(function (response) {
+                console.log(response)
+            })
+            .catch(function (error) {
+                console.log(error)
+                if (error.response.request.status === 409) {
+                    return true
+                }
+            })
+    }
 
     return (
         <SRegist>
@@ -21,31 +82,42 @@ export default function Registration(props) {
                 <SForm>
                     <Form>
                         <Legend>아이디</Legend>
-                        <Input placeholder='아이디' />
+                        <Input value={id} placeholder='아이디' onChange={e => setId(e.target.value)} />
+                        {alert === 1 && <Alert>아이디를 작성해주세요.</Alert>}
+                        {alert === 5 && <Alert>중복된 아이디입니다.</Alert>}
                     </Form>
                     <Form>
                         <Legend>패스워드</Legend>
                         <Wrap>
                             <Input
+                                value={password}
                                 type={isHide ? 'password' : 'text'}
                                 autoComplete='off'
+                                onChange={e => setPassword(e.target.value)}
                             />
                             <HideButton
                                 src={isHide ? Hide : Reveal}
                                 onClick={() => setIsHide(!isHide)}
                             />
                         </Wrap>
+                        {alert === 2 && <Alert>패스워드를 작성해주세요.</Alert>}
                     </Form>
                     <Form>
                         <Legend>계좌번호</Legend>
-                        <Input placeholder='계좌번호' />
+                        <Input value={account} placeholder='계좌번호' onChange={e => setAccount(e.target.value)} />
                         <ToRight>
-                            <SelectBank>
-                                <option>은행명</option>
+                            <SelectBank value={bank} onChange={e => setBank(e.target.value)}>
+                                <option value='none'>은행명</option>
+                                <option value='카카오뱅크'>카카오뱅크</option>
                             </SelectBank>
+                            {alert === 4 && <Alert1>은행을 선택해주세요</Alert1>}
                         </ToRight>
+                        {alert === 3 && <Alert>계좌번호를 작성해주세요.</Alert>}
                     </Form>
-                    <Submit>가입</Submit>
+                    <Submit
+                        type='submit'
+                        onClick={e => registration(e)}
+                    >가입</Submit>
                 </SForm>
             </SBox>
             <Empty>
@@ -164,7 +236,7 @@ const ToRight = styled.div`
 `;
 
 const SelectBank = styled.select`
-    width: 30%;
+    width: 40%;
     height: 40px;
     padding: 4px;
     margin-right: 0;
@@ -194,4 +266,24 @@ const CloseButton = styled.img`
         margin-top: 0;
     }
     cursor: pointer;
+`;
+
+const Alert = styled.div`
+    position: absolute;
+    width: 300px;
+    text-align: right;
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+`;
+
+const Alert1 = styled.div`
+    position: absolute;
+    width: 200px;
+    text-align: left;
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
 `;
