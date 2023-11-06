@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import Reveal from '../images/password/reveal.svg';
 import Hide from '../images/password/hide.svg';
@@ -38,18 +37,7 @@ export default function Registration(props) {
             "lux" : 250,
         }
         console.log(userInfo)
-        if (postUserInfo(userInfo)) {
-            setId("")
-            setAlert(5)
-            return
-        }
-
-        setId("")
-        setPassword("")
-        setAccount("")
-        setBank("none")
-        setAlert(0)
-        props.close(false)
+        postUserInfo(userInfo)
     }
 
     async function postUserInfo(userInfo) {
@@ -59,11 +47,18 @@ export default function Registration(props) {
             )
             .then(function (response) {
                 console.log(response)
+                setId("")
+                setPassword("")
+                setAccount("")
+                setBank("none")
+                setAlert(0)
+                props.close(false)
             })
             .catch(function (error) {
                 console.log(error)
                 if (error.response.request.status === 409) {
-                    return true
+                    setId("")
+                    setAlert(5)
                 }
             })
     }
