@@ -106,8 +106,40 @@ export default function Registration(props) {
                         <Input value={account} placeholder='계좌번호' onChange={e => setAccount(e.target.value)} />
                         <ToRight>
                             <SelectBank value={bank} onChange={e => setBank(e.target.value)}>
-                                <option value='none'>은행명</option>
+                                <option value='none'>--- 은행명 ---</option>
+                                <option value='NH농협'>NH농협</option>
                                 <option value='카카오뱅크'>카카오뱅크</option>
+                                <option value='KB국민은행'>KB국민</option>
+                                <option value='신한은행'>신한</option>
+                                <option value='토스뱅크'>토스뱅크</option>
+                                <option value='우리은행'>우리</option>
+                                <option value='IBK기업은행'>IBK기업</option>
+                                <option value='하나은행'>하나</option>
+                                <option value='MG새마을금고'>새마을</option>
+                                <option value='부산은행'>부산</option>
+                                <option value='대구은행'>대구</option>
+                                <option value='케이뱅크'>케이뱅크</option>
+                                <option value='신협'>신협</option>
+                                <option value='우체국'>우체국</option>
+                                <option value='SC제일은행'>SC제일</option>
+                                <option value='경남은행'>경남</option>
+                                <option value='광주은행'>광주</option>
+                                <option value='수협은행'>수협</option>
+                                <option value='전북은행'>전북</option>
+                                <option value='저축은행'>저축은행</option>
+                                <option value='제주은행'>제주</option>
+                                <option value='씨티은행'>씨티</option>
+                                <option value='KDB산업은행'>KDB산업</option>
+                                <option value='산림조합'>산림조합</option>
+                                <option value='SBI저축은행'>SBI저축은행</option>
+                                <option value='BOA은행'>BOA</option>
+                                <option value='중국은행'>중국</option>
+                                <option value='HSBC은행'>HSBC</option>
+                                <option value='중국공상은행'>중국공상</option>
+                                <option value='도이치은행'>도이치</option>
+                                <option value='JP모건체이스은행'>JP모건</option>
+                                <option value='BNP파리바은행'>BNP파리바</option>
+                                <option value='중국건설은행'>중국건설</option>
                             </SelectBank>
                             {alert === 4 && <Alert1>은행을 선택해주세요</Alert1>}
                         </ToRight>
