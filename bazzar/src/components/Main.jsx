@@ -39,4 +39,6 @@ const MainButton = styled.img`
     width: 20%;
     margin-top: 22%;
     position: absolute;
+    cursor: pointer;
+    border-radius: 10rem;
 `
