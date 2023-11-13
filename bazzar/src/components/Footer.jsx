@@ -2,6 +2,7 @@ import styled from "styled-components"
 import Parthia from "../images/parthia.svg"
 import Logo from '../images/logo.svg';
 import { removeCookie } from "../cookies";
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -12,7 +13,7 @@ export default function Footer() {
             </Wrap>
             <Wrap2>
                 <Column>
-                    <SLink>경매 열기</SLink>
+                    <Link to="/create" style={{color: "black", textDecoration: "none"}}><SLink>경매 열기</SLink></Link>
                 </Column>
                 <Column1>
                     <Wrap1>
@@ -83,7 +84,7 @@ const Column = styled.div`
     }
 `;
 
-const SLink = styled.a`
+const SLink = styled.div`
     width: 120px;
     font-size: 20px;
     text-align: right;

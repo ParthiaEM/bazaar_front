@@ -23,7 +23,9 @@ export default function Header({isLoggedIn, setIsLoggedIn, setUserInfo, userInfo
             {
                 isLoggedIn ?
                 <Wrap>
-                    <StartAuctionButton>경매 열기</StartAuctionButton>
+                    <Link to="/create">
+                        <StartAuctionButton>경매 열기</StartAuctionButton>
+                    </Link>
                     <AccountInfo><Gray>{userInfo.userId}</Gray> 님</AccountInfo>
                     <BulbMeter src={toSVG(userInfo.lux)} />
                 </Wrap> :

@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import Close from '../images/close.svg';
+import { Link } from 'react-router-dom';
 
 export default function GetStarted(props) {
     return (
@@ -9,7 +10,9 @@ export default function GetStarted(props) {
                 <BoxHeader>경매를 시작하거나 경매에 참여할 수 있어요</BoxHeader>
                 <Wrap>
                     <Coulmn>
-                        <Button>경매 열기</Button>
+                        <Link to="/create" style={{color: "black", textDecoration: "none"}}>
+                            <Button>경매 열기</Button>
+                        </Link>
                         <Span>아이디어는 있지만 구현할 능력이 부족한 분들에게 추천</Span>
                     </Coulmn>
                     <Coulmn>
@@ -93,6 +96,7 @@ const Button = styled.div`
     background-color: #FFEEE8;
     cursor: pointer;
 `
+
 const Button1 = styled(Button)`
     background-color: #FDF7F5;
 `

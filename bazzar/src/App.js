@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CreateAuction from './components/CreateAuction.jsx';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import { getCookie } from './cookies.js';
@@ -35,6 +36,7 @@ export default function App() {
         <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} userInfo={userInfo} />
         <Routes>
           <Route path='/' element={<Main />} />
+          <Route path='/create' element={<CreateAuction />} />
         </Routes>
       </BrowserRouter>
     </div>
