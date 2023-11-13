@@ -8,26 +8,29 @@ import LighterBulb from '../images/bulbmeter/lighter.svg';
 import { useState } from 'react';
 import Registration from './Registration';
 import Login from './Login';
+import { Link } from 'react-router-dom';
 
-export default function Header() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+export default function Header({isLoggedIn, setIsLoggedIn, setUserInfo, userInfo}) {
     const [openRegist, setOpenRegist] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
 
     return (
         <SHeader>
-            <SLogo src={Logo} />
+            <Link to="/">
+                <SLogo src={Logo} />
+            </Link>
+            
             {
                 isLoggedIn ?
                 <Wrap>
                     <StartAuctionButton>경매 열기</StartAuctionButton>
-                    <AccountInfo><Gray>id</Gray> 님</AccountInfo>
-                    <BulbMeter src={toSVG(250)} />
+                    <AccountInfo><Gray>{userInfo.userId}</Gray> 님</AccountInfo>
+                    <BulbMeter src={toSVG(userInfo.lux)} />
                 </Wrap> :
                 <LoginButton onClick={() => setOpenRegist(true)}>로그인</LoginButton>
             }
             {openRegist && <Registration close={setOpenRegist} change={setOpenLogin} />}
-            {openLogin && <Login close={setOpenLogin} change={setOpenRegist} />}
+            {openLogin && <Login close={setOpenLogin} change={setOpenRegist} setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />}
         </SHeader>
     )
 }
@@ -51,7 +54,7 @@ const SHeader = styled.div`
 
 const SLogo = styled.img`
     height: 60px;
-    margin: auto 0;
+    margin: 10px 0;
     cursor: pointer;
 `;
 

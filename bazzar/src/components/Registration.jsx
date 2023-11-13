@@ -6,7 +6,7 @@ import Close from '../images/close.svg';
 import { customAxios } from '../customAxios';
 
 export default function Registration(props) {
-    const [isHide, setIsHide] = useState(false)
+    const [isHide, setIsHide] = useState(true)
     const [id, setId] = useState("")
     const [password, setPassword] = useState("")
     const [account, setAccount] = useState("")
@@ -81,7 +81,13 @@ export default function Registration(props) {
                 <SForm>
                     <Form>
                         <Legend>아이디</Legend>
-                        <Input value={id} placeholder='아이디' onChange={e => setId(e.target.value)} />
+                        <Input
+                            name='id'
+                            value={id}
+                            placeholder='아이디'
+                            onChange={e => setId(e.target.value)}
+                            autoComplete='off'
+                        />
                         {alert === 1 && <Alert>아이디를 작성해주세요.</Alert>}
                         {alert === 5 && <Alert>중복된 아이디입니다.</Alert>}
                     </Form>
@@ -89,6 +95,7 @@ export default function Registration(props) {
                         <Legend>패스워드</Legend>
                         <Wrap>
                             <Input
+                                id='password'
                                 value={password}
                                 type={isHide ? 'password' : 'text'}
                                 autoComplete='off'
@@ -103,9 +110,15 @@ export default function Registration(props) {
                     </Form>
                     <Form>
                         <Legend>계좌번호</Legend>
-                        <Input value={account} placeholder='계좌번호' onChange={e => setAccount(e.target.value)} />
+                        <Input
+                            name='account'
+                            value={account}
+                            placeholder='계좌번호'
+                            onChange={e => setAccount(e.target.value)}
+                            autoComplete='off'
+                        />
                         <ToRight>
-                            <SelectBank value={bank} onChange={e => setBank(e.target.value)}>
+                            <SelectBank name='bank' value={bank} onChange={e => setBank(e.target.value)}>
                                 <option value='none'>--- 은행명 ---</option>
                                 <option value='NH농협'>NH농협</option>
                                 <option value='카카오뱅크'>카카오뱅크</option>
@@ -163,15 +176,17 @@ export default function Registration(props) {
 
 const SRegist = styled.div`
     width: 100vw;
-    height: 100vh;
+    max-height: max-content;
+    min-height: 100vh;
     top: 0;
     left: 0;
-    position: absolute;
+    position: fixed;
     background-color: #00000030;
     display: flex;
     justify-content: center;
     font-family: "Pretendard";
     cursor: default;
+    z-index: 10;
 `;
 
 const SBox = styled.div`
@@ -311,7 +326,7 @@ const Alert = styled.div`
 
 const Alert1 = styled.div`
     position: absolute;
-    width: 200px;
+    width: 220px;
     text-align: left;
     color: red;
     font-size: 12px;

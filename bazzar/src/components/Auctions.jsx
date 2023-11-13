@@ -15,15 +15,15 @@ export default function Auctions() {
             <SortButtons>
                 <SortButton
                     onClick={() => setSortSelected(1)}
-                    select={sortSelected === 1 ? "#FFEEE8" : "#FDF7F5"}
+                    $select={sortSelected === 1 ? "#FFEEE8" : "#FDF7F5"}
                 >입찰 전 경매</SortButton>
                 <SortButton
                     onClick={() => setSortSelected(2)}
-                    select={sortSelected === 2 ? "#FFEEE8" : "#FDF7F5"}
+                    $select={sortSelected === 2 ? "#FFEEE8" : "#FDF7F5"}
                 >진행 중인 경매</SortButton>
                 <SortButton
                     onClick={() => setSortSelected(3)}
-                    select={sortSelected === 3 ? "#FFEEE8" : "#FDF7F5"}
+                    $select={sortSelected === 3 ? "#FFEEE8" : "#FDF7F5"}
                 >낙찰된 경매</SortButton>
             </SortButtons>
             <Wraper>
@@ -36,26 +36,26 @@ export default function Auctions() {
                 </AList>
                 <TypeList>
                     <Type
-                        style={{borderRadius: "0 20px 0 0"}}
+                        $round="top"
                         onClick={() => setTypeSelected(1)}
-                        select={typeSelected === 1 ? "#FFEEE8" : "#FDF7F5"}
+                        $select={typeSelected === 1 ? "#FFEEE8" : "#FDF7F5"}
                     >전체</Type>
                     <Type
                         onClick={() => setTypeSelected(2)}
-                        select={typeSelected === 2 ? "#FFEEE8" : "#FDF7F5"}
+                        $select={typeSelected === 2 ? "#FFEEE8" : "#FDF7F5"}
                     ><Span>웹</Span><SImg src={WebIcon} /></Type>
                     <Type
                         onClick={() => setTypeSelected(3)}
-                        select={typeSelected === 3 ? "#FFEEE8" : "#FDF7F5"}
+                        $select={typeSelected === 3 ? "#FFEEE8" : "#FDF7F5"}
                     ><Span>앱</Span><SImg src={AppIcon} /></Type>
                     <Type
                         onClick={() => setTypeSelected(4)}
-                        select={typeSelected === 4 ? "#FFEEE8" : "#FDF7F5"}
+                        $select={typeSelected === 4 ? "#FFEEE8" : "#FDF7F5"}
                     ><Span>게임</Span><SImg src={GameIcon} /></Type>
                     <Type
+                        $round="bottom"
                         onClick={() => setTypeSelected(5)}
-                        select={typeSelected === 5 ? "#FFEEE8" : "#FDF7F5"}
-                        style={{borderRadius: "0  0 20px 0"}}
+                        $select={typeSelected === 5 ? "#FFEEE8" : "#FDF7F5"}
                     ><Span>IoT</Span><SImg src={IoTIcon} /></Type>
                 </TypeList>
             </Wraper>
@@ -90,7 +90,7 @@ const SortButton = styled.button`
     height: 44px;
     padding: 0 20px;
     font-size: 16px;
-    background-color: ${(props) => props.select};
+    background-color: ${(props) => props.$select};
     cursor: pointer;
 `
 
@@ -129,13 +129,17 @@ const TypeList = styled.div`
 
 const Type = styled.div`
     width: auto;
-    background-color: ${(props) => props.select};
+    background-color: ${(props) => props.$select};
     padding: 20px 40px;
     font-size: 20px;
     line-height: 40px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+    border-radius: ${(props) => props.$round === "top" ? "0 20px 0 0" : props.$round === "bottom" ? "0 0 20px 0" : ""};
+    @media (max-width: 700px) {
+        border-radius: ${(props) => props.$round === "bottom" ? "0 0 20px 20px" : "0"}
+    }
 `
 
 const Span = styled.span`

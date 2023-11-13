@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import Parthia from "../images/parthia.svg"
 import Logo from '../images/logo.svg';
+import { removeCookie } from "../cookies";
 
 export default function Footer() {
     return (
@@ -26,7 +27,7 @@ export default function Footer() {
                 </Column1>
                 <Column>
                     <SLink>마이페이지</SLink>
-                    <SLink>로그아웃</SLink>
+                    <SLink onClick={() => (removeCookie('token', {path: '/'}) | window.location.reload() | window.scrollTo({top: 0}))}>로그아웃</SLink>
                 </Column>
             </Wrap2>
         </SFooter>

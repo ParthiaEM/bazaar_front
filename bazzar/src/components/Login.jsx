@@ -4,9 +4,10 @@ import Reveal from '../images/password/reveal.svg';
 import Hide from '../images/password/hide.svg';
 import Close from '../images/close.svg';
 import { customAxios } from '../customAxios';
+import { setCookie } from '../cookies';
 
 export default function Login(props) {
-    const [isHide, setIsHide] = useState(false)
+    const [isHide, setIsHide] = useState(true)
     const [id, setId] = useState("")
     const [password, setPassword] = useState("")
     const [alert, setAlert] = useState(0)
@@ -26,7 +27,6 @@ export default function Login(props) {
             "userId" : id,
             "userPassword" : password,
         }
-        console.log(userInfo)
         postUserInfo(userInfo)
     }
 
@@ -41,13 +41,17 @@ export default function Login(props) {
                     return
                 }
                 console.log(response)
+                props.setUserInfo(response.data.userInfo)
+                setCookie('token', response.data.accessToken, {path: '/', httponly: true})
                 setId("")
                 setPassword("")
                 setAlert(0)
+                props.setIsLoggedIn(true)
                 props.close(false)
             })
             .catch(function (error) {
                 console.log(error)
+                setAlert(3)
             })
     }
 
@@ -70,13 +74,20 @@ export default function Login(props) {
                 <SForm>
                     <Form>
                         <Legend>아이디</Legend>
-                        <Input value={id} placeholder='아이디' onChange={e => setId(e.target.value)} />
+                        <Input
+                            name='id'
+                            value={id}
+                            placeholder='아이디'
+                            onChange={e => setId(e.target.value)}
+                            autoComplete='off'
+                        />
                         {alert === 1 && <Alert>아이디를 작성해주세요.</Alert>}
                     </Form>
                     <Form>
                         <Legend>패스워드</Legend>
                         <Wrap>
                             <Input
+                                name='password'
                                 value={password}
                                 type={isHide ? 'password' : 'text'}
                                 autoComplete='off'
@@ -108,15 +119,17 @@ export default function Login(props) {
 
 const SLogin = styled.div`
     width: 100vw;
-    height: 100vh;
+    max-height: max-content;
+    min-height: 100vh;
     top: 0;
     left: 0;
-    position: absolute;
+    position: fixed;
     background-color: #00000030;
     display: flex;
     justify-content: center;
     font-family: "Pretendard";
     cursor: default;
+    z-index: 10;
 `;
 
 const SBox = styled.div`
