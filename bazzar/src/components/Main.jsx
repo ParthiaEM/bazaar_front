@@ -3,16 +3,21 @@ import Footer from "./Footer"
 import mainImage from "../images/main.svg"
 import mainButton from "../images/button.svg"
 import Auctions from "./Auctions"
+import { useState } from "react"
+import GetStarted from "./GetStarted"
 
 export default function Main() {
+    const [show, setShow] = useState(false)
+    
     return (
         <SMain>
             <MainImg>
                 <MainImage src={mainImage} />
-                <MainButton src={mainButton} />
+                <MainButton src={mainButton} onClick={() => setShow(true)} />
             </MainImg>
             <Auctions />
             <Footer />
+            {show && <GetStarted close={setShow} />}
         </SMain>
     )
 }
