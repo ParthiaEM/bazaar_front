@@ -4,7 +4,7 @@ import Logo from '../images/logo.svg';
 import { removeCookie } from "../cookies";
 import { Link } from 'react-router-dom';
 
-export default function Footer() {
+export default function Footer({setTypeSelected}) {
     return (
         <SFooter>
             <Wrap>
@@ -17,13 +17,13 @@ export default function Footer() {
                 </Column>
                 <Column1>
                     <Wrap1>
-                        <SLink>전체 아이디어</SLink>
-                        <SLink>웹 아이디어</SLink>
-                        <SLink>앱 아이디어</SLink>
+                        <SLink onClick={() => (setTypeSelected(1) | window.scrollTo({top: 700}))}>전체 아이디어</SLink>
+                        <SLink onClick={() => (setTypeSelected(2) | window.scrollTo({top: 700}))}>웹 아이디어</SLink>
+                        <SLink onClick={() => (setTypeSelected(3) | window.scrollTo({top: 700}))}>앱 아이디어</SLink>
                     </Wrap1>
                     <Wrap1>
-                        <SLink>게임 아이디어</SLink>
-                        <SLink>IoT 아이디어</SLink>
+                        <SLink onClick={() => (setTypeSelected(4) | window.scrollTo({top: 700}))}>게임 아이디어</SLink>
+                        <SLink onClick={() => (setTypeSelected(5) | window.scrollTo({top: 700}))}>IoT 아이디어</SLink>
                     </Wrap1>
                 </Column1>
                 <Column>

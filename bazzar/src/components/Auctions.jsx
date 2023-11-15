@@ -7,9 +7,8 @@ import IoTIcon from '../images/type/iot.svg'
 import WebIcon from '../images/type/web.svg'
 import Auction from "./Auction"
 
-export default function Auctions({auctions}) {
+export default function Auctions({auctions, typeSelected, setTypeSelected}) {
     const [sortSelected, setSortSelected] = useState(1)
-    const [typeSelected, setTypeSelected] = useState(1)
     const [gotAuctions, setGotAuctions] = useState(false)
     const [auctionData, setAuctionData] = useState({})
 

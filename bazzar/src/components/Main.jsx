@@ -11,6 +11,7 @@ import { customAxios } from "../customAxios"
 export default function Main() {
     const [show, setShow] = useState(false)
     const [auctions, setAuctions] = useState([])
+    const [typeSelected, setTypeSelected] = useState(1)
 
     async function getIdeas() {
         await customAxios
@@ -33,8 +34,8 @@ export default function Main() {
                 <MainImage src={mainImage} />
                 <MainButton src={mainButton} onClick={() => setShow(true)} />
             </MainImg>
-            <Auctions auctions={auctions} />
-            <Footer />
+            <Auctions auctions={auctions} typeSelected={typeSelected} setTypeSelected={setTypeSelected} />
+            <Footer setTypeSelected={setTypeSelected} />
             {show && <GetStarted close={setShow} />}
         </SMain>
     )
