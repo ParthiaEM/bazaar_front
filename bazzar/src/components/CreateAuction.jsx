@@ -5,7 +5,7 @@ import { getCookie } from "../cookies"
 import { customAxios } from "../customAxios"
 import Complete from "./Complete"
 
-export default function CreateAuction() {
+export default function CreateAuction({isLoggedIn}) {
     const [detail, setDetail] = useState("")
     const [sum, setSum] = useState("")
     const [startBid, setStartBid] = useState(0)
@@ -43,7 +43,7 @@ export default function CreateAuction() {
         e.preventDefault()
 
         if (detail.length === 0 || sum.length === 0 || startBid === 0 || field === "none") {
-            setAlert(true)
+            setAlert(1)
             return
         }
 
@@ -98,7 +98,7 @@ export default function CreateAuction() {
                         <Link to="/" style={{color: "black", textDecoration: "none"}}>
                             <Button>등록 취소</Button>
                         </Link>
-                        <Button1 onClick={e => createAuction(e)}>경매 올리기</Button1>
+                        {isLoggedIn ? <Button1 onClick={e => createAuction(e)}>경매 올리기</Button1> : <Button2>로그인이 필요합니다</Button2>}
                     </Buttons>
                 </Column>
             </SForm>
@@ -116,7 +116,7 @@ const Box = styled.div`
     padding: 60px 140px;
     @media (max-width: 950px) {
         height: 150vh;
-        padding: 20px 0;
+        padding: 80px 0;
     }
 `
 
@@ -182,6 +182,7 @@ const Button = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     padding: 16px 32px;
     background-color: #FFEEE8;
     font-size: 20px;
@@ -192,6 +193,11 @@ const Button = styled.div`
 
 const Button1 = styled(Button)`
     background-color: #FDF7F5;
+`
+
+const Button2 = styled(Button1)`
+    color: lightgray;
+    cursor: default;
 `
 
 const Alert = styled.div`

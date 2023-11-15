@@ -36,7 +36,7 @@ export default function App() {
         <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} userInfo={userInfo} />
         <Routes>
           <Route path='/' element={<Main />} />
-          <Route path='/create' element={<CreateAuction />} />
+          <Route path='/create' element={<CreateAuction isLoggedIn={isLoggedIn} />} />
         </Routes>
       </BrowserRouter>
     </div>
