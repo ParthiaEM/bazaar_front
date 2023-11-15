@@ -43,6 +43,9 @@ const SAuction = styled.div`
     @media (max-width: 900px) {
         flex-direction: column;
         gap: 10px;
+        line-height: 32px;
+        align-items: center;
+        padding: 20px;
     }
     cursor: pointer;
 `
@@ -58,4 +61,7 @@ const SImg = styled.img`
     width: fit-content;
     height: 40px;
     margin: auto 0;
+    @media (max-width: 900px) {
+        height: 28px;
+    }
 `
