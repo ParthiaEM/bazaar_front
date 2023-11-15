@@ -35,8 +35,9 @@ const SAuction = styled.div`
     background-color: #FDF7F5;
     display: flex;
     justify-content: space-between;
-    padding: 16px 20px;
+    padding: 0 20px;
     font-size: 20px;
+    line-height: 52px;
     border-radius: 12px;
     gap: 20px;
     @media (max-width: 900px) {
@@ -55,5 +56,6 @@ const Span = styled.span`
 
 const SImg = styled.img`
     width: fit-content;
-    height: 24px;
+    height: 40px;
+    margin: auto 0;
 `
