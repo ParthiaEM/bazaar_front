@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useState } from "react"
 import styled from "styled-components"
 import AppIcon from '../images/type/app.svg'
@@ -6,9 +7,30 @@ import IoTIcon from '../images/type/iot.svg'
 import WebIcon from '../images/type/web.svg'
 import Auction from "./Auction"
 
-export default function Auctions() {
+export default function Auctions({auctions}) {
     const [sortSelected, setSortSelected] = useState(1)
     const [typeSelected, setTypeSelected] = useState(1)
+    const [gotAuctions, setGotAuctions] = useState(false)
+    const [auctionData, setAuctionData] = useState({})
+
+    useEffect(() => {
+        if (auctions.length === 0) setGotAuctions(false)
+        else setGotAuctions(true)
+        setAuctionData(auctions)
+    }, [auctions])
+
+    useEffect(() => {
+        let type;
+        if (typeSelected === 1) {
+            setAuctionData(auctions)
+            return
+        }
+        if (typeSelected === 2) type = "웹"
+        if (typeSelected === 3) type = "앱"
+        if (typeSelected === 4) type = "게임"
+        if (typeSelected === 5) type = "IoT"
+        setAuctionData(auctions.filter(data => data.ideaField === type))
+    }, [typeSelected])
 
     return (
         <SAuction>
@@ -28,11 +50,9 @@ export default function Auctions() {
             </SortButtons>
             <Wraper>
                 <AList>
-                    <Auction />
-                    <Auction />
-                    <Auction />
-                    <Auction />
-                    <Auction />
+                    {gotAuctions && auctionData.length !== 0 ?
+                    auctionData.map((data, i) => <Auction key={i} data={data} />)
+                    : <NoData>진행 중인 경매가 없어요</NoData>}
                 </AList>
                 <TypeList>
                     <Type
@@ -147,4 +167,9 @@ const Span = styled.span`
 
 const SImg = styled.img`
     height: 40px;
+`
+
+const NoData = styled.p`
+    font-size: 20px;
+    line-height: 16px;
 `

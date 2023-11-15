@@ -5,9 +5,27 @@ import mainButton from "../images/button.svg"
 import Auctions from "./Auctions"
 import { useState } from "react"
 import GetStarted from "./GetStarted"
+import { useEffect } from "react"
+import { customAxios } from "../customAxios"
 
 export default function Main() {
     const [show, setShow] = useState(false)
+    const [auctions, setAuctions] = useState([])
+
+    async function getIdeas() {
+        await customAxios
+        .get('/idea')
+        .then(function (response) {
+            setAuctions(response.data)
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+    }
+
+    useEffect(() => {
+        getIdeas()
+    }, [])
     
     return (
         <SMain>
@@ -15,7 +33,7 @@ export default function Main() {
                 <MainImage src={mainImage} />
                 <MainButton src={mainButton} onClick={() => setShow(true)} />
             </MainImg>
-            <Auctions />
+            <Auctions auctions={auctions} />
             <Footer />
             {show && <GetStarted close={setShow} />}
         </SMain>

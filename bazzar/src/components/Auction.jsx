@@ -9,13 +9,24 @@ import IoTIcon from '../images/type/iot.svg'
 import WebIcon from '../images/type/web.svg'
 import styled from 'styled-components'
 
-export default function Auction() {
+export default function Auction({data}) {
+    function toIcon(field) {
+        if (field === "웹") return WebIcon
+        if (field === "앱") return AppIcon
+        if (field === "게임") return GameIcon
+        if (field === "IoT") return IoTIcon
+    }
+
+    function toPrice(price) {
+        return price.toLocaleString('ko-KR')
+    }
+
     return (
         <SAuction>
-            <Span>아이디어 제목</Span>
+            <Span>{data.ideaName}</Span>
             <Span>nlux<SImg src={DarkBulb} /></Span>
-            <Span>x,xxxx₩</Span>
-            <SImg src={WebIcon} />
+            <Span>₩ {toPrice(data.price)}</Span>
+            <SImg src={toIcon(data.ideaField)} />
         </SAuction>
     )
 }
