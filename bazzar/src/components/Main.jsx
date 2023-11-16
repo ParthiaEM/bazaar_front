@@ -2,11 +2,11 @@ import styled from "styled-components"
 import Footer from "./Footer"
 import mainImage from "../images/main.svg"
 import mainButton from "../images/button.svg"
-import Auctions from "./AuctionList"
 import { useState } from "react"
 import GetStarted from "./GetStarted"
 import { useEffect } from "react"
 import { customAxios } from "../customAxios"
+import AuctionList from "./AuctionList"
 
 export default function Main() {
     const [show, setShow] = useState(false)
@@ -34,7 +34,7 @@ export default function Main() {
                 <MainImage src={mainImage} />
                 <MainButton src={mainButton} onClick={() => setShow(true)} />
             </MainImg>
-            <Auctions auctions={auctions} typeSelected={typeSelected} setTypeSelected={setTypeSelected} />
+            <AuctionList auctions={auctions} typeSelected={typeSelected} setTypeSelected={setTypeSelected} />
             <Footer setTypeSelected={setTypeSelected} />
             {show && <GetStarted close={setShow} />}
         </SMain>

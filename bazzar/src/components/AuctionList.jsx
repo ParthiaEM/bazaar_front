@@ -5,9 +5,9 @@ import AppIcon from '../images/type/app.svg'
 import GameIcon from '../images/type/game.svg'
 import IoTIcon from '../images/type/iot.svg'
 import WebIcon from '../images/type/web.svg'
-import Auction from "./AuctionCard"
+import AuctionCard from "./AuctionCard"
 
-export default function Auctions({auctions, typeSelected, setTypeSelected}) {
+export default function AuctionList({auctions, typeSelected, setTypeSelected}) {
     const [sortSelected, setSortSelected] = useState(1)
     const [gotAuctions, setGotAuctions] = useState(false)
     const [auctionData, setAuctionData] = useState({})
@@ -69,7 +69,7 @@ export default function Auctions({auctions, typeSelected, setTypeSelected}) {
             <Wraper>
                 <AList>
                     {gotAuctions && auctionData.length !== 0 ?
-                    auctionData.map((data, i) => <Auction key={i} data={data} />)
+                    auctionData.map((data, i) => <AuctionCard key={i} data={data} />)
                     : <NoData>{sortSelected === 1 ? "입찰 전인 경매가 없어요" : sortSelected === 2 ? "진행 중인 경매가 없어요" : "낙찰된 경매가 없어요"}</NoData>}
                 </AList>
                 <TypeList>

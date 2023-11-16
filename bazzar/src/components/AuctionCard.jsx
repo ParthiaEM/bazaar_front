@@ -11,7 +11,7 @@ import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { customAxios } from '../customAxios'
 
-export default function Auction({data}) {
+export default function AuctionCard({data}) {
     const [postedUser, setPostedUser] = useState({})
 
     async function getUser() {
