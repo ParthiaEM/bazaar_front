@@ -16,22 +16,38 @@ export default function Auctions({auctions, typeSelected, setTypeSelected}) {
         if (auctions.length === 0) setGotAuctions(false)
         else setGotAuctions(true)
         setAuctionData(auctions)
+        sort()
     }, [auctions])
+
+    function sort() {
+        if (sortSelected === 1) setAuctionData(auctions.filter(data => data.isTrading && data.count === 0))
+        if (sortSelected === 2) setAuctionData(auctions.filter(data => data.isTrading && data.count > 0))
+        if (sortSelected === 3) setAuctionData(auctions.filter(data => !data.isTrading))
+    }
+
+    function getSorted() {
+        if (sortSelected === 1) return auctions.filter(data => data.isTrading && data.count === 0)
+        if (sortSelected === 2) return auctions.filter(data => data.isTrading && data.count > 0)
+        if (sortSelected === 3) return auctions.filter(data => !data.isTrading)
+    }
 
     useEffect(() => {
         let type
         if (typeSelected === 1) {
-            setAuctionData(auctions)
+            setAuctionData(getSorted())
             return
         }
         if (typeSelected === 2) type = "웹"
         if (typeSelected === 3) type = "앱"
         if (typeSelected === 4) type = "게임"
         if (typeSelected === 5) type = "IoT"
-        setAuctionData(auctions.filter(data => data.ideaField === type))
+
+        setAuctionData(getSorted().filter(data => data.ideaField === type))
     }, [typeSelected])
 
     useEffect(() => {
+        sort()
+        setTypeSelected(1)
     }, [sortSelected])
 
     return (
@@ -54,7 +70,7 @@ export default function Auctions({auctions, typeSelected, setTypeSelected}) {
                 <AList>
                     {gotAuctions && auctionData.length !== 0 ?
                     auctionData.map((data, i) => <Auction key={i} data={data} />)
-                    : <NoData>진행 중인 경매가 없어요</NoData>}
+                    : <NoData>{sortSelected === 1 ? "입찰 전인 경매가 없어요" : sortSelected === 2 ? "진행 중인 경매가 없어요" : "낙찰된 경매가 없어요"}</NoData>}
                 </AList>
                 <TypeList>
                     <Type
