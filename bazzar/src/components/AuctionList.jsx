@@ -5,7 +5,7 @@ import AppIcon from '../images/type/app.svg'
 import GameIcon from '../images/type/game.svg'
 import IoTIcon from '../images/type/iot.svg'
 import WebIcon from '../images/type/web.svg'
-import Auction from "./Auction"
+import Auction from "./AuctionCard"
 
 export default function Auctions({auctions, typeSelected, setTypeSelected}) {
     const [sortSelected, setSortSelected] = useState(1)
