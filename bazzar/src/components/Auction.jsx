@@ -8,8 +8,27 @@ import GameIcon from '../images/type/game.svg'
 import IoTIcon from '../images/type/iot.svg'
 import WebIcon from '../images/type/web.svg'
 import styled from 'styled-components'
+import { useEffect, useState } from 'react'
+import { customAxios } from '../customAxios'
 
 export default function Auction({data}) {
+    const [postedUser, setPostedUser] = useState({})
+
+    async function getUser() {
+        await customAxios
+        .get('/user/' + data.postedUserId)
+        .then(function (response) {
+            setPostedUser(response.data)
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+    }
+
+    useEffect(() => {
+        getUser()
+    }, [data])
+
     function toIcon(field) {
         if (field === "웹") return WebIcon
         if (field === "앱") return AppIcon
@@ -21,10 +40,18 @@ export default function Auction({data}) {
         return price.toLocaleString('ko-KR')
     }
 
+    function toBulb(bulbmeter) {
+        if(bulbmeter <= 100) return DarkerBulb;
+        if(bulbmeter <= 200) return DarkBulb;
+        if(bulbmeter <= 300) return NormalBulb;
+        if(bulbmeter <= 400) return LightBulb;
+        return LighterBulb;
+    }
+
     return (
         <SAuction>
             <Span>{data.ideaName}</Span>
-            <Span>nlux<SImg src={DarkBulb} /></Span>
+            <Span>{postedUser.lux} lux<SImg src={toBulb(postedUser.lux)} /></Span>
             <Span>₩ {toPrice(data.price)}</Span>
             <SImg src={toIcon(data.ideaField)} />
         </SAuction>

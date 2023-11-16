@@ -19,7 +19,7 @@ export default function Auctions({auctions, typeSelected, setTypeSelected}) {
     }, [auctions])
 
     useEffect(() => {
-        let type;
+        let type
         if (typeSelected === 1) {
             setAuctionData(auctions)
             return
@@ -30,6 +30,9 @@ export default function Auctions({auctions, typeSelected, setTypeSelected}) {
         if (typeSelected === 5) type = "IoT"
         setAuctionData(auctions.filter(data => data.ideaField === type))
     }, [typeSelected])
+
+    useEffect(() => {
+    }, [sortSelected])
 
     return (
         <SAuction>
