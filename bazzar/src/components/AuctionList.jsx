@@ -20,15 +20,15 @@ export default function Auctions({auctions, typeSelected, setTypeSelected}) {
     }, [auctions])
 
     function sort() {
-        if (sortSelected === 1) setAuctionData(auctions.filter(data => data.isTrading && data.count === 0))
+        if (sortSelected === 1) setAuctionData(auctions.filter(data => !data.isTrading && data.count === 0))
         if (sortSelected === 2) setAuctionData(auctions.filter(data => data.isTrading && data.count > 0))
-        if (sortSelected === 3) setAuctionData(auctions.filter(data => !data.isTrading))
+        if (sortSelected === 3) setAuctionData(auctions.filter(data => !data.isTrading && data.count !== 0))
     }
 
     function getSorted() {
-        if (sortSelected === 1) return auctions.filter(data => data.isTrading && data.count === 0)
+        if (sortSelected === 1) return auctions.filter(data => !data.isTrading && data.count === 0)
         if (sortSelected === 2) return auctions.filter(data => data.isTrading && data.count > 0)
-        if (sortSelected === 3) return auctions.filter(data => !data.isTrading)
+        if (sortSelected === 3) return auctions.filter(data => !data.isTrading && data.count !== 0)
     }
 
     useEffect(() => {
