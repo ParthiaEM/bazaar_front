@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Auction from './components/Auction.jsx';
 import CreateAuction from './components/CreateAuction.jsx';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
@@ -37,6 +38,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/create' element={<CreateAuction isLoggedIn={isLoggedIn} />} />
+          <Route path='/auction/:id' element={<Auction isLoggedIn={isLoggedIn} userInfo={userInfo} />} />
         </Routes>
       </BrowserRouter>
     </div>

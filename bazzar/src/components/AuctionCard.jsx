@@ -10,6 +10,7 @@ import WebIcon from '../images/type/web.svg'
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { customAxios } from '../customAxios'
+import { Link } from 'react-router-dom'
 
 export default function AuctionCard({data}) {
     const [postedUser, setPostedUser] = useState({})
@@ -49,12 +50,14 @@ export default function AuctionCard({data}) {
     }
 
     return (
-        <SAuction>
-            <Span>{data.ideaName}</Span>
-            <Span>{postedUser.lux} lux<SImg src={toBulb(postedUser.lux)} /></Span>
-            <Span>₩ {toPrice(data.price)}</Span>
-            <SImg src={toIcon(data.ideaField)} />
-        </SAuction>
+        <Link to={"/auction/"+data.ideaId} style={{color: "black", textDecoration: "none"}}>
+            <SAuction>
+                <Span>{data.ideaName}</Span>
+                <Span>{postedUser.lux} lux<SImg src={toBulb(postedUser.lux)} /></Span>
+                <Span>₩ {toPrice(data.price)}</Span>
+                <SImg src={toIcon(data.ideaField)} />
+            </SAuction>
+        </Link>
     )
 }
 
