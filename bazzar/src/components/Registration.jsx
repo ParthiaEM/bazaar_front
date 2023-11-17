@@ -34,7 +34,7 @@ export default function Registration(props) {
             "userId" : id,
             "userPassword" : password,
             "userAccount" : bank+' '+account,
-            "lux" : 450,
+            "lux" : 250,
         }
         postUserInfo(userInfo)
     }
