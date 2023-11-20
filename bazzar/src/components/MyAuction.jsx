@@ -15,6 +15,7 @@ import WebIcon from '../images/type/web.svg'
 import CoinSVG from '../images/coin.svg'
 import StopAuction from "./StopAuction"
 import { getCookie } from "../cookies"
+import SuccessAuction from "./SuccessAuction"
 
 export default function MyAuction() {
     const {id} = useParams()
@@ -92,17 +93,6 @@ export default function MyAuction() {
         return coins
     }
 
-    async function end() {
-        await customAxios
-        .get('/idea/' + id + '/end')
-        .then(function (response) {
-            console.log(response)
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
-    }
-
     async function put() {
         const DTO = {
             "token": getCookie('token'),
@@ -175,12 +165,13 @@ export default function MyAuction() {
                                 )}
                             </Coins>
                             <Span>{toPrice(ideaData.price)} ₩</Span>
-                            {ideaData.count !== 0 ? <Button onClick={() => end()}>낙찰하기</Button> : <Button1>입찰을 기다려주세요</Button1>}
+                            {ideaData.count !== 0 ? <Button onClick={() => setShowModal(2)}>낙찰하기</Button> : <Button1>입찰을 기다려주세요</Button1>}
                         </Bid>
                     </Side1>
                 </Wrap>
             </Column>
             {showModal === 1 && <StopAuction close={setShowModal} id={id} />}
+            {showModal === 2 && <SuccessAuction close={setShowModal} id={id} bidder={lastUser.userId} price={ideaData.price} />}
         </SAuction>
     )
 }
