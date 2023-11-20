@@ -1,11 +1,11 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-export default function Complete() {
+export default function Complete({say}) {
     return (
         <SComplete>
             <SBox>
-                <BoxHeader>경매가 등록되었습니다!</BoxHeader>
+                <BoxHeader>{say}</BoxHeader>
                 <Link to="/" style={{color: "black", textDecoration: "none"}}>
                     <Button>완료</Button>
                 </Link>

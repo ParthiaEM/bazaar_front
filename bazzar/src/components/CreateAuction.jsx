@@ -102,7 +102,7 @@ export default function CreateAuction({isLoggedIn}) {
                     </Buttons>
                 </Column>
             </SForm>
-            {show && <Complete />}
+            {show && <Complete say="경매가 등록되었습니다!" />}
         </Box>  
     )
 }
