@@ -16,6 +16,7 @@ import CoinSVG from '../images/coin.svg'
 import StopAuction from "./StopAuction"
 import { getCookie } from "../cookies"
 import SuccessAuction from "./SuccessAuction"
+import OpenIdea from "./OpenIdea"
 
 export default function MyAuction() {
     const {id} = useParams()
@@ -134,7 +135,9 @@ export default function MyAuction() {
                             <Field src={toIcon(ideaData.ideaField)} />
                         </Line>
                         <Title>{ideaData.ideaName}</Title>
-                        {retouch ?
+                        {ideaData.purchasedUserId !== 0 ?
+                            <Empty1 /> :
+                        retouch ?
                             <Line1>
                                 <Span1
                                     onClick={() => setRetouch(false)}
@@ -165,13 +168,19 @@ export default function MyAuction() {
                                 )}
                             </Coins>
                             <Span>{toPrice(ideaData.price)} ₩</Span>
-                            {ideaData.count !== 0 ? <Button onClick={() => setShowModal(2)}>낙찰하기</Button> : <Button1>입찰을 기다려주세요</Button1>}
+                            {ideaData.count !== 0 ?
+                            ideaData.purchasedUserId !== 0 ?
+                                <Button onClick={() => setShowModal(3)}>공개하기</Button> :
+                                <Button onClick={() => setShowModal(2)}>낙찰하기</Button> :
+                                <Button1>입찰을 기다려주세요</Button1>
+                            }
                         </Bid>
                     </Side1>
                 </Wrap>
             </Column>
             {showModal === 1 && <StopAuction close={setShowModal} id={id} />}
             {showModal === 2 && <SuccessAuction close={setShowModal} id={id} bidder={lastUser.userId} price={ideaData.price} />}
+            {showModal === 3 && <OpenIdea close={setShowModal} />}
         </SAuction>
     )
 }
@@ -271,6 +280,10 @@ const Span1 = styled.span`
     cursor: pointer;
 `
 
+const Empty1 = styled.div`
+    height: 20px;
+`
+
 const Textarea = styled.textarea`
     width: calc(100% - 24px);
     height: 396px;
@@ -315,7 +328,7 @@ const Coin = styled.img`
 
 const Button = styled.div`
     width: 50%;
-    background-color: #FFEEE8;
+    background-color: #FDF7F5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -327,7 +340,6 @@ const Button = styled.div`
 
 const Button1 = styled(Button)`
     width: 70%;
-    background-color: #FDF7F5;
     color: #9A9A9A;
     cursor: default;
     word-break: keep-all;
