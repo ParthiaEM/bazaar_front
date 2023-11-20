@@ -15,12 +15,15 @@ import IoTIcon from '../images/type/iot.svg'
 import WebIcon from '../images/type/web.svg'
 import CoinSVG from '../images/coin.svg'
 import { getCookie } from "../cookies"
+import Payment from "./Payment"
 
 export default function OthersAuction({isLoggedIn, userInfo}) {
     const {id} = useParams()
     const [ideaData, setIdeaData] = useState({})
     const [postedUser, setPostedUser] = useState({})
     const [lastUser, setLastUser] = useState({})
+    const [purchasedUser, setPurchasedUser] = useState({})
+    const [show, setShow] = useState(false)
 
     async function getUser() {
         await customAxios
@@ -32,15 +35,25 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
             console.log(error)
         })
 
-        if (ideaData.bidUserId === 0) return
+        if (ideaData.bidUserId !== 0) {
+            await customAxios
+            .get('/user/' + parseInt(ideaData.bidUserId))
+            .then(function (response) {
+                setLastUser(response.data)
+            })
+            .catch(function (error) {
+                console.log(error)
+        })}
+
+        if (ideaData.purchasedUserId !== 0) {
         await customAxios
-        .get('/user/' + parseInt(ideaData.bidUserId))
+        .get('/user/' + parseInt(ideaData.purchasedUserId))
         .then(function (response) {
-            setLastUser(response.data)
+            setPurchasedUser(response.data)
         })
         .catch(function (error) {
             console.log(error)
-        })
+        })}
     }
 
     async function getIdeaDetails() {
@@ -109,6 +122,14 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
         })
     }
 
+    function setDesc() {
+        if (userInfo.userUniqueId === ideaData.purchasedUserId)
+            return "결제를 완료하고 확인이 되면 아이디어를 볼 수 있어요"
+        if (ideaData.purchasedUserId !== 0)
+            return "아쉽게도 낙찰받지 못했어요... 다른 경매에 도전할까요?"
+        return "낙찰 받으면 세부 아이디어를 볼 수 있어요"
+    }
+
 
     return (
         <SAuction>
@@ -127,14 +148,19 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                         </Line>
                         <Title>{ideaData.ideaName}</Title>
                         <Blind $image={BlindSVG}>
-                            낙찰 받으면<br />
-                            세부 아이디어를<br />
-                            볼 수 있어요
+                            <Desc>{setDesc()}</Desc>
+                            {userInfo.userUniqueId !== ideaData.purchasedUserId &&
+                            ideaData.purchasedUserId !== 0 &&
+                            <Button1><Link to='/' style={{color: 'black', textDecoration: 'none'}}>새로운 경매 찾기</Link></Button1>}
                         </Blind>
                     </Side>
                     <Side1>
                         <Bid>
-                            {ideaData.bidUserId !== 0 ? <Span>마지막 입찰자 : {lastUser.userId}</Span> : <Empty />}
+                            {ideaData.bidUserId !== 0 ?
+                                <Span>마지막 입찰자 : {lastUser.userId}</Span> :
+                            ideaData.purchasedUserId !== 0 ?
+                                <Span>낙찰자 : {purchasedUser.userId}</Span> :
+                                <Empty />}
                             <Coins>
                                 {placeCoins().map((_, k) =>
                                     <Coin src={CoinSVG} key={k} />
@@ -143,18 +169,23 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                             <Span>{toPrice(ideaData.price)} ₩</Span>
                             {!isLoggedIn ?
                                 <Block>로그인이 필요한 기능입니다</Block> :
-                                userInfo.userUniqueId !== ideaData.bidUserId ?
+                            userInfo.userUniqueId === ideaData.bidUserId ?
+                                <Block1>입찰했어요</Block1> :
+                            userInfo.userUniqueId === ideaData.purchasedUserId ?
+                                <Button onClick={() => setShow(true)}>결제 완료하기</Button> :
+                            ideaData.isTrading ?
                                 (<Line1>
                                     <Empty1 />
                                     <Button onClick={() => bid()}>입찰하기</Button>
                                     <Plus>+ 500 ₩</Plus>
                                 </Line1>) :
-                                <Block1>입찰했어요</Block1>
+                                <Block2>경매가 끝났어요</Block2>
                             }
                         </Bid>
                     </Side1>
                 </Wrap>
             </Column>
+            {show && <Payment close={setShow} userUniqueId={ideaData.postedUserId} price={ideaData.price} />}
         </SAuction>
     )
 }
@@ -248,16 +279,23 @@ const Blind = styled.div`
     width: 100%;
     height: 420px;
     display: flex;
+    flex-direction: column;
+    gap: 12px;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    font-weight: bold;
-    font-size: 40px;
     background-image: url(${(props) => props.$image});
     background-repeat : no-repeat;
     background-size : contain;
     border: 1px solid black;
     margin-top: 20px;
+`
+
+const Desc = styled.div`
+    width: 60%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    word-break: keep-all;
 `
 
 const Bid = styled.div`
@@ -315,6 +353,11 @@ const Button = styled.div`
     cursor: pointer;
 `
 
+const Button1 = styled(Button)`
+    width: 40%;
+    background-color: #FDF7F5;
+`
+
 const Plus = styled.div`
     width: calc(25% - 8px);
     padding-left: 8px;
@@ -336,4 +379,8 @@ const Block = styled.div`
 
 const Block1 = styled(Block)`
     width: 40%;
+`
+
+const Block2 = styled(Block)`
+    width: 50%;
 `
