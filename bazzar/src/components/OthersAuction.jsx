@@ -16,6 +16,7 @@ import WebIcon from '../images/type/web.svg'
 import CoinSVG from '../images/coin.svg'
 import { getCookie } from "../cookies"
 import Payment from "./Payment"
+import Evaluate from "./Evaluate"
 
 export default function OthersAuction({isLoggedIn, userInfo}) {
     const {id} = useParams()
@@ -24,6 +25,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
     const [lastUser, setLastUser] = useState({})
     const [purchasedUser, setPurchasedUser] = useState({})
     const [show, setShow] = useState(false)
+    const [evaluate, setEvaluate] = useState(0)
 
     async function getUser() {
         await customAxios
@@ -130,7 +132,6 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
         return "낙찰 받으면 세부 아이디어를 볼 수 있어요"
     }
 
-
     return (
         <SAuction>
             <Column>
@@ -147,6 +148,14 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                             <Field src={toIcon(ideaData.ideaField)} />
                         </Line>
                         <Title>{ideaData.ideaName}</Title>
+                        {ideaData.purchasedUserId === userInfo.userUniqueId && evaluate === 0 ?
+                            <Line2>
+                                <Span1 onClick={() => setEvaluate(1)}>판매자 평가하기</Span1>
+                            </Line2> :
+                            <Line2>
+                                <Span1>판매자 평가 완료</Span1>
+                            </Line2>
+                        }
                         {ideaData.purchasedUserId !== userInfo.userUniqueId ?
                             <Blind $image={BlindSVG}>
                                 <Desc>{setDesc()}</Desc>
@@ -193,6 +202,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                 </Wrap>
             </Column>
             {show && <Payment close={setShow} userUniqueId={ideaData.postedUserId} price={ideaData.price} />}
+            {evaluate === 1 && <Evaluate close={setEvaluate} />}
         </SAuction>
     )
 }
@@ -294,7 +304,6 @@ const Blind = styled.div`
     background-repeat : no-repeat;
     background-size : contain;
     border: 1px solid black;
-    margin-top: 20px;
 `
 
 const Textarea = styled.textarea`
@@ -305,7 +314,20 @@ const Textarea = styled.textarea`
     border: 1px solid black;
     padding: 12px;
     resize: none;
-    margin-top: 20px;
+`
+
+const Empty2 = styled.div`
+    height: 20px;
+`
+
+const Line2 = styled(Line)`
+    justify-content: right;
+    gap: 16px;
+`
+
+const Span1 = styled.span`
+    color: #9A9A9A;
+    cursor: pointer;
 `
 
 const Desc = styled.div`
