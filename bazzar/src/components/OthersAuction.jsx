@@ -123,9 +123,9 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
     }
 
     function setDesc() {
-        if (userInfo.userUniqueId === ideaData.purchasedUserId)
+        if (ideaData.count > 0 && !ideaData.isTrading && userInfo.userUniqueId === ideaData.bidUserId)
             return "결제를 완료하고 확인이 되면 아이디어를 볼 수 있어요"
-        if (ideaData.purchasedUserId !== 0)
+        if (ideaData.count > 0 && !ideaData.isTrading && userInfo.userUniqueId !== ideaData.bidUserId)
             return "아쉽게도 낙찰받지 못했어요... 다른 경매에 도전할까요?"
         return "낙찰 받으면 세부 아이디어를 볼 수 있어요"
     }
@@ -149,8 +149,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                         <Title>{ideaData.ideaName}</Title>
                         <Blind $image={BlindSVG}>
                             <Desc>{setDesc()}</Desc>
-                            {userInfo.userUniqueId !== ideaData.purchasedUserId &&
-                            ideaData.purchasedUserId !== 0 &&
+                            {userInfo.userUniqueId !== ideaData.bidUserId && !ideaData.isTrading && ideaData.count > 0 &&
                             <Button1><Link to='/' style={{color: 'black', textDecoration: 'none'}}>새로운 경매 찾기</Link></Button1>}
                         </Blind>
                     </Side>
@@ -169,16 +168,16 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                             <Span>{toPrice(ideaData.price)} ₩</Span>
                             {!isLoggedIn ?
                                 <Block>로그인이 필요한 기능입니다</Block> :
-                            userInfo.userUniqueId === ideaData.bidUserId ?
-                                <Block1>입찰했어요</Block1> :
-                            userInfo.userUniqueId === ideaData.purchasedUserId ?
-                                <Button onClick={() => setShow(true)}>결제 완료하기</Button> :
-                            ideaData.isTrading ?
+                            ideaData.bidUserId !== userInfo.userUniqueId && ideaData.isTrading || ideaData.count === 0 ?
                                 (<Line1>
                                     <Empty1 />
                                     <Button onClick={() => bid()}>입찰하기</Button>
                                     <Plus>+ 500 ₩</Plus>
                                 </Line1>) :
+                            ideaData.bidUserId === userInfo.userUniqueId && ideaData.isTrading ?
+                                <Block1>입찰했어요</Block1> :
+                            ideaData.bidUserId === userInfo.userUniqueId ?
+                                <Button onClick={() => setShow(true)}>결제 완료하기</Button> :
                                 <Block2>경매가 끝났어요</Block2>
                             }
                         </Bid>
