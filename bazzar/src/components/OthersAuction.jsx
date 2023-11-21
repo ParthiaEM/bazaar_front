@@ -147,11 +147,17 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                             <Field src={toIcon(ideaData.ideaField)} />
                         </Line>
                         <Title>{ideaData.ideaName}</Title>
-                        <Blind $image={BlindSVG}>
-                            <Desc>{setDesc()}</Desc>
-                            {userInfo.userUniqueId !== ideaData.bidUserId && !ideaData.isTrading && ideaData.count > 0 &&
-                            <Button1><Link to='/' style={{color: 'black', textDecoration: 'none'}}>새로운 경매 찾기</Link></Button1>}
-                        </Blind>
+                        {ideaData.purchasedUserId !== userInfo.userUniqueId ?
+                            <Blind $image={BlindSVG}>
+                                <Desc>{setDesc()}</Desc>
+                                {userInfo.userUniqueId !== ideaData.bidUserId && !ideaData.isTrading && ideaData.count > 0 &&
+                                <Button1><Link to='/' style={{color: 'black', textDecoration: 'none'}}>새로운 경매 찾기</Link></Button1>}
+                            </Blind> :
+                            <Textarea
+                                defaultValue={ideaData.ideaDetail}
+                                readOnly={true}
+                            />
+                        }
                     </Side>
                     <Side1>
                         <Bid>
@@ -168,7 +174,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                             <Span>{toPrice(ideaData.price)} ₩</Span>
                             {!isLoggedIn ?
                                 <Block>로그인이 필요한 기능입니다</Block> :
-                            ideaData.bidUserId !== userInfo.userUniqueId && ideaData.isTrading || ideaData.count === 0 ?
+                            ideaData.bidUserId !== userInfo.userUniqueId && (ideaData.isTrading || ideaData.count === 0) ?
                                 (<Line1>
                                     <Empty1 />
                                     <Button onClick={() => bid()}>입찰하기</Button>
@@ -176,6 +182,8 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                                 </Line1>) :
                             ideaData.bidUserId === userInfo.userUniqueId && ideaData.isTrading ?
                                 <Block1>입찰했어요</Block1> :
+                            ideaData.purchasedUserId === userInfo.userUniqueId ?
+                                <Block2>낙찰받았어요</Block2> :
                             ideaData.bidUserId === userInfo.userUniqueId ?
                                 <Button onClick={() => setShow(true)}>결제 완료하기</Button> :
                                 <Block2>경매가 끝났어요</Block2>
@@ -286,6 +294,17 @@ const Blind = styled.div`
     background-repeat : no-repeat;
     background-size : contain;
     border: 1px solid black;
+    margin-top: 20px;
+`
+
+const Textarea = styled.textarea`
+    width: calc(100% - 24px);
+    height: 396px;
+    font-family: 'pretendard';
+    font-size: 20px;
+    border: 1px solid black;
+    padding: 12px;
+    resize: none;
     margin-top: 20px;
 `
 

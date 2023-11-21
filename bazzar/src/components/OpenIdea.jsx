@@ -1,12 +1,21 @@
 import { useState } from "react";
 import styled from "styled-components"
+import { customAxios } from "../customAxios";
 import Complete from "./Complete";
 
-export default function OpenIdea({close}) {
+export default function OpenIdea({close, id}) {
     const [show, setShow] = useState(false)
 
     async function open() {
-        setShow(true)
+        await customAxios
+        .get('/idea/complete/' + id)
+        .then(function (response) {
+            console.log(response)
+            setShow(true)
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
     }
 
     return (
