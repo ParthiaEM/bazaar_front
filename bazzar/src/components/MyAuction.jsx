@@ -152,12 +152,18 @@ export default function MyAuction() {
                                 >완료</Span1>
                             </Line1>
                         }
-                        <Textarea
-                            defaultValue={ideaData.ideaDetail}
-                            onChange={e => setDetail(e.target.value)}
-                            onBlur={e => (e.target.value = detail | update())}
-                            readOnly={retouch}
-                        />
+                        {!ideaData.isTrading && ideaData.count > 0 ?
+                            <Textarea
+                                defaultValue={ideaData.ideaDetail}
+                                readOnly={retouch}
+                            /> :
+                            <Textarea
+                                defaultValue={ideaData.ideaDetail}
+                                onChange={e => setDetail(e.target.value)}
+                                onBlur={e => (e.target.value = detail | update())}
+                                readOnly={retouch}
+                            />
+                        }
                     </Side>
                     <Side1>
                         <Bid>
