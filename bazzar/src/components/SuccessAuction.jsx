@@ -12,9 +12,9 @@ export default function SuccessAuction({close, id, bidder, price}) {
     const [count, setCount] = useState(0)
     const [show, setShow] = useState(false)
 
-    async function end() {
+    async function end(ID) {
         await customAxios
-        .get('/idea/' + id + '/end')
+        .get('/idea/' + ID + '/end')
         .then(function (response) {
             console.log(response)
             setShow(true)
@@ -25,8 +25,8 @@ export default function SuccessAuction({close, id, bidder, price}) {
     }
 
     useEffect(() => {
-        if (count === 3) end()
-    }, [count])
+        if (count === 3) end(id)
+    }, [count, id])
 
     return (
         <SGetStarted>

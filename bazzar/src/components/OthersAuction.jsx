@@ -27,9 +27,9 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
     const [show, setShow] = useState(false)
     const [evaluate, setEvaluate] = useState(0)
 
-    async function getUser() {
+    async function getUser(IdeaData) {
         await customAxios
-        .get('/user/' + parseInt(ideaData.postedUserId))
+        .get('/user/' + parseInt(IdeaData.postedUserId))
         .then(function (response) {
             setPostedUser(response.data)
         })
@@ -37,9 +37,9 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
             console.log(error)
         })
 
-        if (ideaData.bidUserId !== 0) {
+        if (IdeaData.bidUserId !== 0) {
             await customAxios
-            .get('/user/' + parseInt(ideaData.bidUserId))
+            .get('/user/' + parseInt(IdeaData.bidUserId))
             .then(function (response) {
                 setLastUser(response.data)
             })
@@ -47,9 +47,9 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                 console.log(error)
         })}
 
-        if (ideaData.purchasedUserId !== 0) {
+        if (IdeaData.purchasedUserId !== 0) {
         await customAxios
-        .get('/user/' + parseInt(ideaData.purchasedUserId))
+        .get('/user/' + parseInt(IdeaData.purchasedUserId))
         .then(function (response) {
             setPurchasedUser(response.data)
         })
@@ -58,9 +58,13 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
         })}
     }
 
-    async function getIdeaDetails() {
+    useEffect(() => {
+        if (ideaData.ideaId !== undefined) getUser(ideaData)
+    }, [ideaData])
+
+    async function getIdeaDetails(ID) {
         await customAxios
-        .get('/idea/' + id)
+        .get('/idea/' + ID)
         .then(function (response) {
             setIdeaData(response.data)
         })
@@ -70,12 +74,8 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
     }
 
     useEffect(() => {
-        getIdeaDetails()
-    }, [])
-
-    useEffect(() => {
-        if (ideaData.ideaId !== undefined) getUser()
-    }, [ideaData])
+        getIdeaDetails(id)
+    }, [id])
 
     function toIcon(field) {
         if (field === "웹") return WebIcon
@@ -314,10 +314,6 @@ const Textarea = styled.textarea`
     border: 1px solid black;
     padding: 12px;
     resize: none;
-`
-
-const Empty2 = styled.div`
-    height: 20px;
 `
 
 const Line2 = styled(Line)`

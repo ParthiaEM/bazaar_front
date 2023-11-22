@@ -7,9 +7,9 @@ import { useEffect } from "react";
 export default function Payment({close, userUniqueId, price}) {
     const [user, setUser] = useState({'userAccount': '은행 계좌번호'})
 
-    async function getUser() {
+    async function getUser(ID) {
         await customAxios
-        .get('/user/' + parseInt(userUniqueId))
+        .get('/user/' + parseInt(ID))
         .then(function (response) {
             setUser(response.data)
         })
@@ -19,8 +19,8 @@ export default function Payment({close, userUniqueId, price}) {
     }
 
     useEffect(() => {
-        getUser()
-    }, [])
+        getUser(userUniqueId)
+    }, [userUniqueId])
 
     return (
         <SGetStarted>

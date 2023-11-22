@@ -8,9 +8,9 @@ export default function Auction({isLoggedIn, userInfo}) {
     const {id} = useParams()
     const [ideaData, setIdeaData] = useState({})
 
-    async function getIdeaDetails() {
+    async function getIdeaDetails(ID) {
         await customAxios
-        .get('/idea/' + id)
+        .get('/idea/' + ID)
         .then(function (response) {
             setIdeaData(response.data)
         })
@@ -20,8 +20,8 @@ export default function Auction({isLoggedIn, userInfo}) {
     }
 
     useEffect(() => {
-        getIdeaDetails()
-    }, [])
+        getIdeaDetails(id)
+    }, [id])
 
     return (
         <>

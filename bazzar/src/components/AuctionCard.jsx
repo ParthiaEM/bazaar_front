@@ -15,9 +15,9 @@ import { Link } from 'react-router-dom'
 export default function AuctionCard({data}) {
     const [postedUser, setPostedUser] = useState({})
 
-    async function getUser() {
+    async function getUser(Data) {
         await customAxios
-        .get('/user/' + data.postedUserId)
+        .get('/user/' + Data.postedUserId)
         .then(function (response) {
             setPostedUser(response.data)
         })
@@ -27,7 +27,7 @@ export default function AuctionCard({data}) {
     }
 
     useEffect(() => {
-        getUser()
+        getUser(data)
     }, [data])
 
     function toIcon(field) {

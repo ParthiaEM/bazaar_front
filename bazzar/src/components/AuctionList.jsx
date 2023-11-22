@@ -12,29 +12,29 @@ export default function AuctionList({auctions, typeSelected, setTypeSelected}) {
     const [gotAuctions, setGotAuctions] = useState(false)
     const [auctionData, setAuctionData] = useState({})
 
+    function sort(selectedSort, Auctions) {
+        if (selectedSort === 1) setAuctionData(Auctions.filter(data => !data.isTrading && data.count === 0))
+        if (selectedSort === 2) setAuctionData(Auctions.filter(data => data.isTrading && data.count > 0))
+        if (selectedSort === 3) setAuctionData(Auctions.filter(data => !data.isTrading && data.count !== 0))
+    }
+
+    function getSorted(selectedSort, Auctions) {
+        if (selectedSort === 1) return Auctions.filter(data => !data.isTrading && data.count === 0)
+        if (selectedSort === 2) return Auctions.filter(data => data.isTrading && data.count > 0)
+        if (selectedSort === 3) return Auctions.filter(data => !data.isTrading && data.count !== 0)
+    }
+
     useEffect(() => {
         if (auctions.length === 0) setGotAuctions(false)
         else setGotAuctions(true)
         setAuctionData(auctions)
-        sort()
-    }, [auctions])
-
-    function sort() {
-        if (sortSelected === 1) setAuctionData(auctions.filter(data => !data.isTrading && data.count === 0))
-        if (sortSelected === 2) setAuctionData(auctions.filter(data => data.isTrading && data.count > 0))
-        if (sortSelected === 3) setAuctionData(auctions.filter(data => !data.isTrading && data.count !== 0))
-    }
-
-    function getSorted() {
-        if (sortSelected === 1) return auctions.filter(data => !data.isTrading && data.count === 0)
-        if (sortSelected === 2) return auctions.filter(data => data.isTrading && data.count > 0)
-        if (sortSelected === 3) return auctions.filter(data => !data.isTrading && data.count !== 0)
-    }
+        sort(sortSelected, auctions)
+    }, [auctions, sortSelected])
 
     useEffect(() => {
         let type
         if (typeSelected === 1) {
-            setAuctionData(getSorted())
+            sort(sortSelected, auctions)
             return
         }
         if (typeSelected === 2) type = "웹"
@@ -42,13 +42,14 @@ export default function AuctionList({auctions, typeSelected, setTypeSelected}) {
         if (typeSelected === 4) type = "게임"
         if (typeSelected === 5) type = "IoT"
 
-        setAuctionData(getSorted().filter(data => data.ideaField === type))
-    }, [typeSelected])
+        setAuctionData(getSorted(sortSelected, auctions).filter(data => data.ideaField === type))
+    }, [typeSelected, sortSelected, auctions])
 
     useEffect(() => {
-        sort()
+        sort(sortSelected, auctions)
         setTypeSelected(1)
-    }, [sortSelected])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sortSelected, auctions])
 
     return (
         <SAuction>

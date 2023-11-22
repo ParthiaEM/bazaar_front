@@ -27,9 +27,9 @@ export default function MyAuction() {
     const [retouch, setRetouch] = useState(true)
     const [showModal, setShowModal] = useState(0)
 
-    async function getUser() {
+    async function getUser(IdeaData) {
         await customAxios
-        .get('/user/' + parseInt(ideaData.postedUserId))
+        .get('/user/' + parseInt(IdeaData.postedUserId))
         .then(function (response) {
             setPostedUser(response.data)
         })
@@ -37,9 +37,9 @@ export default function MyAuction() {
             console.log(error)
         })
 
-        if (ideaData.bidUserId === 0) return
+        if (IdeaData.bidUserId === 0) return
         await customAxios
-        .get('/user/' + parseInt(ideaData.bidUserId))
+        .get('/user/' + parseInt(IdeaData.bidUserId))
         .then(function (response) {
             setLastUser(response.data)
         })
@@ -48,9 +48,9 @@ export default function MyAuction() {
         })
     }
 
-    async function getIdeaDetails() {
+    async function getIdeaDetails(ID) {
         await customAxios
-        .get('/idea/' + id)
+        .get('/idea/' + ID)
         .then(function (response) {
             setIdeaData(response.data)
             setDetail(response.data.ideaDetail)
@@ -61,11 +61,11 @@ export default function MyAuction() {
     }
 
     useEffect(() => {
-        getIdeaDetails()
-    }, [])
+        getIdeaDetails(id)
+    }, [id])
 
     useEffect(() => {
-        if (ideaData.ideaId !== undefined) getUser()
+        if (ideaData.ideaId !== undefined) getUser(ideaData)
     }, [ideaData])
 
     function toIcon(field) {
