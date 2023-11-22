@@ -202,7 +202,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                 </Wrap>
             </Column>
             {show && <Payment close={setShow} userUniqueId={ideaData.postedUserId} price={ideaData.price} />}
-            {evaluate === 1 && <Evaluate close={setEvaluate} />}
+            {evaluate === 1 && <Evaluate close={setEvaluate} id={ideaData.postedUserId} />}
         </SAuction>
     )
 }
