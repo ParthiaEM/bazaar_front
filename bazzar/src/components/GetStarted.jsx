@@ -1,8 +1,15 @@
 import styled from "styled-components"
 import Close from '../images/close.svg';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 export default function GetStarted(props) {
+    const [randId, setRandId] = useState(0)
+
+    useEffect(() => {
+        setRandId("/auction/" + (props.ids[0][Math.floor(Math.random() * props.ids[0].length)]))
+    }, [props.ids])
+
     return (
         <SGetStarted>
             <Empty />
@@ -16,7 +23,9 @@ export default function GetStarted(props) {
                         <Span>아이디어는 있지만 구현할 능력이 부족한 분들에게 추천</Span>
                     </Coulmn>
                     <Coulmn>
-                        <Button1>경매 참여하기</Button1>
+                        <Link to={randId} style={{color: "black", textDecoration: "none"}}>
+                            <Button1>경매 참여하기</Button1>
+                        </Link>
                         <Span>새로운 아이디어로 프로젝트를 하고싶은 분들에게 추천</Span>
                     </Coulmn>
                 </Wrap>

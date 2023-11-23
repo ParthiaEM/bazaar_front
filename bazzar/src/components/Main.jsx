@@ -12,12 +12,14 @@ export default function Main() {
     const [show, setShow] = useState(false)
     const [auctions, setAuctions] = useState([])
     const [typeSelected, setTypeSelected] = useState(1)
+    const [auctionIDs, setAuctionIDs] = useState([])
 
     async function getIdeas() {
         await customAxios
         .get('/idea')
         .then(function (response) {
             setAuctions(response.data)
+            setAuctionIDs([response.data.map(auction => auction.ideaId)])
         })
     }
 
@@ -33,7 +35,7 @@ export default function Main() {
             </MainImg>
             <AuctionList auctions={auctions} typeSelected={typeSelected} setTypeSelected={setTypeSelected} />
             <Footer setTypeSelected={setTypeSelected} />
-            {show && <GetStarted close={setShow} />}
+            {show && <GetStarted close={setShow} ids={auctionIDs} />}
         </SMain>
     )
 }
