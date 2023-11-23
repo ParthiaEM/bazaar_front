@@ -13,6 +13,7 @@ export default function StopAuction({close, id}) {
         .then(function () {
             setShow(true)
         })
+        .catch()
     }
 
     return (

@@ -33,6 +33,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
         .then(function (response) {
             setPostedUser(response.data)
         })
+        .catch()
 
         if (IdeaData.bidUserId !== 0) {
             await customAxios
@@ -40,6 +41,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
             .then(function (response) {
                 setLastUser(response.data)
             })
+            .catch()
         }
 
         if (IdeaData.purchasedUserId !== 0) {
@@ -48,6 +50,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
             .then(function (response) {
                 setPurchasedUser(response.data)
             })
+            .catch()
         }
     }
 
@@ -61,6 +64,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
         .then(function (response) {
             setIdeaData(response.data)
         })
+        .catch()
     }
 
     useEffect(() => {
@@ -108,6 +112,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
         .then(function () {
             window.location.reload()
         })
+        .catch()
     }
 
     function setDesc() {

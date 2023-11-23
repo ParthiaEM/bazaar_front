@@ -21,6 +21,7 @@ export default function Main() {
             setAuctions(response.data)
             setAuctionIDs([response.data.map(auction => auction.ideaId)])
         })
+        .catch()
     }
 
     useEffect(() => {

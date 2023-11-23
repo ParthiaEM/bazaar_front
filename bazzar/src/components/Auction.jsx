@@ -14,6 +14,7 @@ export default function Auction({isLoggedIn, userInfo}) {
         .then(function (response) {
             setIdeaData(response.data)
         })
+        .catch()
     }
 
     useEffect(() => {

@@ -18,6 +18,7 @@ export default function SuccessAuction({close, id, bidder, price}) {
         .then(function () {
             setShow(true)
         })
+        .catch()
     }
 
     useEffect(() => {

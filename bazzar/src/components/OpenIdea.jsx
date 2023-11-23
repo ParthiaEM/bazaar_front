@@ -12,6 +12,7 @@ export default function OpenIdea({close, id}) {
         .then(function () {
             setShow(true)
         })
+        .catch()
     }
 
     return (

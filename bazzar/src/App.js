@@ -17,6 +17,7 @@ export default function App() {
         .then(function (response) {
             setUserInfo(response.data)
         })
+        .catch()
 }
 
   useEffect(() => {

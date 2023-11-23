@@ -33,6 +33,7 @@ export default function MyAuction() {
         .then(function (response) {
             setPostedUser(response.data)
         })
+        .catch()
 
         if (IdeaData.bidUserId === 0) return
         await customAxios
@@ -40,6 +41,7 @@ export default function MyAuction() {
         .then(function (response) {
             setLastUser(response.data)
         })
+        .catch()
     }
 
     async function getIdeaDetails(ID) {
@@ -49,6 +51,7 @@ export default function MyAuction() {
             setIdeaData(response.data)
             setDetail(response.data.ideaDetail)
         })
+        .catch()
     }
 
     useEffect(() => {
