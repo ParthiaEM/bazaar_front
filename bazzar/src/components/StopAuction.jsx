@@ -10,12 +10,8 @@ export default function StopAuction({close, id}) {
     async function stopAuction() {
         await customAxios
         .delete('/idea/' + id + '?token=' + getCookie('token'))
-        .then(function (response) {
-            console.log(response)
+        .then(function () {
             setShow(true)
-        })
-        .catch(function (error) {
-            console.log(error)
         })
     }
 

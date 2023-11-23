@@ -33,18 +33,12 @@ export default function MyAuction() {
         .then(function (response) {
             setPostedUser(response.data)
         })
-        .catch(function (error) {
-            console.log(error)
-        })
 
         if (IdeaData.bidUserId === 0) return
         await customAxios
         .get('/user/' + parseInt(IdeaData.bidUserId))
         .then(function (response) {
             setLastUser(response.data)
-        })
-        .catch(function (error) {
-            console.log(error)
         })
     }
 
@@ -54,9 +48,6 @@ export default function MyAuction() {
         .then(function (response) {
             setIdeaData(response.data)
             setDetail(response.data.ideaDetail)
-        })
-        .catch(function (error) {
-            console.log(error)
         })
     }
 
@@ -106,12 +97,6 @@ export default function MyAuction() {
         .put('/idea/' + id,
             DTO
         )
-        .then(function (response) {
-            console.log(response)
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
     }
 
     function update() {

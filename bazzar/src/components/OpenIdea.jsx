@@ -9,12 +9,8 @@ export default function OpenIdea({close, id}) {
     async function open() {
         await customAxios
         .get('/idea/complete/' + id)
-        .then(function (response) {
-            console.log(response)
+        .then(function () {
             setShow(true)
-        })
-        .catch(function (error) {
-            console.log(error)
         })
     }
 

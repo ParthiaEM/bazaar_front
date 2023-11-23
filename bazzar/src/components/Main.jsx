@@ -19,9 +19,6 @@ export default function Main() {
         .then(function (response) {
             setAuctions(response.data)
         })
-        .catch(function (error) {
-            console.log(error)
-        })
     }
 
     useEffect(() => {

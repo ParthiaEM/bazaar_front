@@ -13,9 +13,6 @@ export default function Payment({close, userUniqueId, price}) {
         .then(function (response) {
             setUser(response.data)
         })
-        .catch(function (error) {
-            console.log(error)
-        })
     }
 
     useEffect(() => {

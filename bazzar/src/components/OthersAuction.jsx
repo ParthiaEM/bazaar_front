@@ -33,9 +33,6 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
         .then(function (response) {
             setPostedUser(response.data)
         })
-        .catch(function (error) {
-            console.log(error)
-        })
 
         if (IdeaData.bidUserId !== 0) {
             await customAxios
@@ -43,19 +40,15 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
             .then(function (response) {
                 setLastUser(response.data)
             })
-            .catch(function (error) {
-                console.log(error)
-        })}
+        }
 
         if (IdeaData.purchasedUserId !== 0) {
-        await customAxios
-        .get('/user/' + parseInt(IdeaData.purchasedUserId))
-        .then(function (response) {
-            setPurchasedUser(response.data)
-        })
-        .catch(function (error) {
-            console.log(error)
-        })}
+            await customAxios
+            .get('/user/' + parseInt(IdeaData.purchasedUserId))
+            .then(function (response) {
+                setPurchasedUser(response.data)
+            })
+        }
     }
 
     useEffect(() => {
@@ -67,9 +60,6 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
         .get('/idea/' + ID)
         .then(function (response) {
             setIdeaData(response.data)
-        })
-        .catch(function (error) {
-            console.log(error)
         })
     }
 
@@ -115,12 +105,8 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
         .put('/idea/' + id,
             DTO
         )
-        .then(function (response) {
-            console.log(response)
+        .then(function () {
             window.location.reload()
-        })
-        .catch(function (error) {
-            console.log(error)
         })
     }
 

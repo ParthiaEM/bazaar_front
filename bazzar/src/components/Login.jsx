@@ -40,7 +40,6 @@ export default function Login(props) {
                     setAlert(3)
                     return
                 }
-                console.log(response)
                 props.setUserInfo(response.data.userInfo)
                 setCookie('token', response.data.accessToken, {path: '/', httponly: true})
                 setId("")
@@ -49,8 +48,7 @@ export default function Login(props) {
                 props.setIsLoggedIn(true)
                 props.close(false)
             })
-            .catch(function (error) {
-                console.log(error)
+            .catch(function () {
                 setAlert(3)
             })
     }

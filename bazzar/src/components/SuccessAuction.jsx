@@ -15,12 +15,8 @@ export default function SuccessAuction({close, id, bidder, price}) {
     async function end(ID) {
         await customAxios
         .get('/idea/' + ID + '/end')
-        .then(function (response) {
-            console.log(response)
+        .then(function () {
             setShow(true)
-        })
-        .catch(function (error) {
-            console.log(error)
         })
     }
 

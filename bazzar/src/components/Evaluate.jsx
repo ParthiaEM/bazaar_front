@@ -16,11 +16,8 @@ export default function Evaluate({close, id}) {
         .put('user/lux/' + id,
             DTO
         )
-        .then(function (response) {
+        .then(function () {
             close(2)
-        })
-        .catch(function (error) {
-            console.log(error)
         })
     }
 

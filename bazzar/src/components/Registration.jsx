@@ -44,8 +44,7 @@ export default function Registration(props) {
             .post("/user/register",
                 new URLSearchParams(userInfo)
             )
-            .then(function (response) {
-                console.log(response)
+            .then(function () {
                 setId("")
                 setPassword("")
                 setAccount("")
@@ -54,7 +53,6 @@ export default function Registration(props) {
                 props.close(false)
             })
             .catch(function (error) {
-                console.log(error)
                 if (error.response.request.status === 409) {
                     setId("")
                     setAlert(5)

@@ -21,9 +21,6 @@ export default function AuctionCard({data}) {
         .then(function (response) {
             setPostedUser(response.data)
         })
-        .catch(function (error) {
-            console.log(error)
-        })
     }
 
     useEffect(() => {

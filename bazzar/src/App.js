@@ -17,9 +17,6 @@ export default function App() {
         .then(function (response) {
             setUserInfo(response.data)
         })
-        .catch(function (error) {
-            console.log(error)
-        })
 }
 
   useEffect(() => {

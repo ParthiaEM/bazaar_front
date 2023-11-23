@@ -29,12 +29,10 @@ export default function CreateAuction({isLoggedIn}) {
             .post("/idea",
                 DTO
             )
-            .then(function (response) {
-                console.log(response)
+            .then(function () {
                 setShow(true)
             })
-            .catch(function (error) {
-                console.log(error)
+            .catch(function () {
                 setAlert(2)
             })
     }
