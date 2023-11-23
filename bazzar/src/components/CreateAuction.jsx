@@ -64,6 +64,7 @@ export default function CreateAuction({isLoggedIn}) {
                 <Column>
                     <Legend>아이디어 세부 사항</Legend>
                     <IdeaDetail
+                        name="ideaDetail"
                         placeholder="낙찰자에게 공개되는 정보입니다.&#13;&#10;가능한 구체적으로 작성해주세요."
                         onChange={e => setDetail(e.target.value)}
                     />
@@ -71,19 +72,24 @@ export default function CreateAuction({isLoggedIn}) {
                 <Column>
                     <Legend>아이디어 제목</Legend>
                     <AuctionSetting
+                        name="ideaTitle"
                         placeholder="아이디어를 어필할 한 마디를 작성해주세요."
                         type="text"
                         onChange={e => setSum(e.target.value)}
                     />
                     <Legend>경매 시작가 설정</Legend>
                     <AuctionSetting
+                        name="startPrice"
                         placeholder="500원 단위로 작성해주세요."
                         type="number"
                         onChange={e => (setStartBid(By500(e.target.value)))}
                         onBlur={e => change(e)}
                     />
                     <Legend>아이디어 주제 설정</Legend>
-                    <SelectTopic onChange={e => setField(e.target.value)}>
+                    <SelectTopic
+                        name="ideaField"
+                        onChange={e => setField(e.target.value)}
+                    >
                         <option value="none">--- 주제 선택 ---</option>
                         <option value="웹">웹</option>
                         <option value="앱">앱</option>

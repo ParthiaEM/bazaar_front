@@ -143,6 +143,7 @@ export default function MyAuction() {
                                 readOnly={retouch}
                             /> :
                             <Textarea
+                                name="ideaDetail"
                                 defaultValue={ideaData.ideaDetail}
                                 onChange={e => setDetail(e.target.value)}
                                 onBlur={e => {e.target.value = detail; if(!retouch) update()}}

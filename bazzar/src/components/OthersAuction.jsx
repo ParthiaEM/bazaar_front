@@ -151,6 +151,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                                 <Button1><Link to='/' style={{color: 'black', textDecoration: 'none'}}>새로운 경매 찾기</Link></Button1>}
                             </Blind> :
                             <Textarea
+                                name="ideaDetail"
                                 defaultValue={ideaData.ideaDetail}
                                 readOnly={true}
                             />
