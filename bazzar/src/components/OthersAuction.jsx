@@ -152,9 +152,11 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                             <Line2>
                                 <Span1 onClick={() => setEvaluate(1)}>판매자 평가하기</Span1>
                             </Line2> :
+                        ideaData.purchasedUserId === userInfo.userUniqueId ?
                             <Line2>
                                 <Span1>판매자 평가 완료</Span1>
-                            </Line2>
+                            </Line2> :
+                            <Empty3 />
                         }
                         {ideaData.purchasedUserId !== userInfo.userUniqueId ?
                             <Blind $image={BlindSVG}>
@@ -319,6 +321,10 @@ const Textarea = styled.textarea`
 const Line2 = styled(Line)`
     justify-content: right;
     gap: 16px;
+`
+
+const Empty3 = styled.div`
+    height: 40px;
 `
 
 const Span1 = styled.span`
