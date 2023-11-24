@@ -58,6 +58,11 @@ const SLogo = styled.img`
     height: 60px;
     margin: 10px 0;
     cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+        height: 68px;
+        margin: 6px -8px;
+    };
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;

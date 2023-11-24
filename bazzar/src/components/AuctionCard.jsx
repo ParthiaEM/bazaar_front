@@ -76,6 +76,11 @@ const SAuction = styled.div`
         padding: 20px;
     }
     cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+        margin: 0 -4px 0 4px;
+        background-color: #FFEEE8;
+    };
 `
 
 const Span = styled.span`

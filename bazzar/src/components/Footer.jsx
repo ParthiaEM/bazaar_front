@@ -61,6 +61,10 @@ const SParthia = styled.img`
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
+    transition: 1s;
+    &:hover {
+        transform: rotate(720deg);
+    }
 `;
 
 const SLogo = styled(SParthia)`

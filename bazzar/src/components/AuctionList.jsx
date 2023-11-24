@@ -131,6 +131,16 @@ const SortButton = styled.button`
     font-size: 16px;
     background-color: ${(props) => props.$select};
     cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+        margin: -4px 0;
+        background-color: #FFEEE8;
+    };
+    @media (max-width: 700px) {
+        &:hover {
+            margin: 0 -4px 0 4px;
+        }
+    };
 `
 
 const Wraper = styled.div`
@@ -179,6 +189,14 @@ const Type = styled.div`
     @media (max-width: 700px) {
         border-radius: ${(props) => props.$round === "bottom" ? "0 0 20px 20px" : "0"}
     }
+    transition: 0.1s;
+    &:hover {
+        line-height: 48px;
+        background-color: #FFEEE8;
+        :last-child {
+            height: 48px;
+        }
+    };
 `
 
 const Span = styled.span`

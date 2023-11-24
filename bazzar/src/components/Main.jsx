@@ -69,6 +69,11 @@ const MainButton = styled.img`
     position: absolute;
     cursor: pointer;
     border-radius: 10rem;
+    transition: 0.5s;
+    &:hover {
+        width: 21%;
+        margin-top: 21.8%;
+    };
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
