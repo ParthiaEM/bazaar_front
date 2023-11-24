@@ -274,9 +274,17 @@ const Span = styled.span`
 const Bulb = styled.img`
     height: 40px;
     margin-left: 16px;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `
 const Field = styled.img`
     height: 60px;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `
 
 const Title = styled.div`
@@ -362,6 +370,10 @@ const Coins = styled.div`
 const Coin = styled.img`
     width: 80px;
     margin-top: -24px;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `
 
 const Line1 = styled.div`

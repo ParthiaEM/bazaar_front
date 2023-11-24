@@ -58,6 +58,10 @@ const SLogo = styled.img`
     height: 60px;
     margin: 10px 0;
     cursor: pointer;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `;
 
 const LoginButton = styled.button`
@@ -103,4 +107,8 @@ const Gray = styled.span`
 
 const BulbMeter = styled.img`
     height: 40px;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `;

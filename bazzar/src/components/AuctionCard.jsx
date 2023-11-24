@@ -92,4 +92,8 @@ const SImg = styled.img`
     @media (max-width: 900px) {
         height: 28px;
     }
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `

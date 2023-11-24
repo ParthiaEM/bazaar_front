@@ -106,4 +106,8 @@ const Line = styled.div`
  const Img = styled.img`
     height: 60px;
     cursor: pointer;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
  `

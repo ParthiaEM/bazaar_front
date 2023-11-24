@@ -57,6 +57,10 @@ const MainImg = styled.div`
 
 const MainImage = styled.img`
     width: 100%;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `
 
 const MainButton = styled.img`
@@ -65,4 +69,8 @@ const MainButton = styled.img`
     position: absolute;
     cursor: pointer;
     border-radius: 10rem;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `

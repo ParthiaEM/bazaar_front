@@ -122,4 +122,8 @@ const CloseButton = styled.img`
         margin-top: 0;
     }
     cursor: pointer;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `;

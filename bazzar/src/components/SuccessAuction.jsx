@@ -130,11 +130,19 @@ const Img = styled.img`
     width: 100px;
     margin: auto;
     cursor: pointer;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `
 
 const Img1 = styled.img`
     width: 20px;
     margin: auto;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `
 
 const Row = styled.div`
@@ -151,4 +159,8 @@ const CloseButton = styled.img`
         margin-top: 0;
     }
     cursor: pointer;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `;

@@ -57,11 +57,14 @@ const Wrap = styled.div`
 const SParthia = styled.img`
     height: 120px;
     margin: auto 0;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `;
 
-const SLogo = styled.img`
+const SLogo = styled(SParthia)`
     height: 60px;
-    margin: auto 0;
 `;
 
 const Wrap2 = styled.div`

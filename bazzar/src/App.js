@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import styled from 'styled-components';
 import Auction from './components/Auction.jsx';
 import CreateAuction from './components/CreateAuction.jsx';
 import Header from './components/Header.jsx';
@@ -30,7 +31,7 @@ export default function App() {
   }, [])
 
   return (
-    <div className="App">
+    <SApp>
       <BrowserRouter>
         <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} userInfo={userInfo} />
         <Routes>
@@ -39,6 +40,13 @@ export default function App() {
           <Route path='/auction/:id' element={<Auction isLoggedIn={isLoggedIn} userInfo={userInfo} />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </SApp>
   );
 }
+
+const SApp = styled.div`
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+`

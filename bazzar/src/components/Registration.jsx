@@ -272,6 +272,10 @@ const HideButton = styled.img`
     right: 12px;
     top: 14px;
     cursor: pointer;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `;
 
 const ToRight = styled.div`
@@ -310,6 +314,10 @@ const CloseButton = styled.img`
         margin-top: 0;
     }
     cursor: pointer;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 `;
 
 const Alert = styled.div`
