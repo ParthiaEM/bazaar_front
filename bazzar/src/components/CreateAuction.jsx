@@ -76,6 +76,7 @@ export default function CreateAuction({isLoggedIn}) {
                         placeholder="아이디어를 어필할 한 마디를 작성해주세요."
                         type="text"
                         onChange={e => setSum(e.target.value)}
+                        autoComplete={false}
                     />
                     <Legend>경매 시작가 설정</Legend>
                     <AuctionSetting
