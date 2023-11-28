@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { customAxios } from "../customAxios"
 import BlindSVG from "../images/blind.svg"
 import DarkerBulb from '../images/bulbmeter/darker.svg'
@@ -358,6 +358,15 @@ const Empty = styled.div`
     height: 40px;
 `
 
+const fade = keyframes`
+    0% {
+        opacity: 0;
+    };
+    100% {
+        opacity: 1;
+    };
+`
+
 const Coins = styled.div`
     width: 60%;
     height: 70%;
@@ -368,8 +377,10 @@ const Coins = styled.div`
 `
 
 const Coin = styled.img`
+    opacity: 0;
     width: 80px;
     margin-top: -24px;
+    animation: ${fade} 1s 0.1s ease-out forwards;
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
