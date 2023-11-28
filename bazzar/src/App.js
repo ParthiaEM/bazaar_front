@@ -45,6 +45,7 @@ export default function App() {
 }
 
 const SApp = styled.div`
+  background-color: white;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
