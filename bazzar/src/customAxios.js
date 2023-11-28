@@ -1,5 +1,5 @@
 import axios from 'axios';
-const SERVER_ADDRESS = 'http://10.150.149.25:3000'
+const SERVER_ADDRESS = 'https://port-0-bazaar-backend-1gksli2alphjrcb7.sel5.cloudtype.app/'
 
 axios.defaults.withCredentials = true;
 
