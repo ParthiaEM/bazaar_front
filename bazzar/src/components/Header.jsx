@@ -26,7 +26,9 @@ export default function Header({isLoggedIn, setIsLoggedIn, setUserInfo, userInfo
                     <Link to="/create">
                         <StartAuctionButton>경매 열기</StartAuctionButton>
                     </Link>
-                    <AccountInfo><Gray>{userInfo.userId}</Gray> 님</AccountInfo>
+                    <Link to="/mypage">
+                        <AccountInfo><Gray>{userInfo.userId}</Gray> 님</AccountInfo>
+                    </Link>
                     <BulbMeter src={toSVG(userInfo.lux)} />
                 </Wrap> :
                 <LoginButton onClick={() => setOpenRegist(true)}>로그인</LoginButton>
