@@ -4,7 +4,7 @@ import Logo from '../images/logo.svg';
 import { removeCookie } from "../cookies";
 import { Link } from 'react-router-dom';
 
-export default function Footer({setTypeSelected}) {
+export default function Footer({setTypeSelected, isLoggedIn}) {
     return (
         <SFooter>
             <Wrap>
@@ -26,10 +26,14 @@ export default function Footer({setTypeSelected}) {
                         <SLink onClick={() => (setTypeSelected(5) | window.scrollTo({top: 700}))}>IoT 아이디어</SLink>
                     </Wrap1>
                 </Column1>
-                <Column>
-                    <SLink>마이페이지</SLink>
-                    <SLink onClick={() => (removeCookie('token', {path: '/'}) | window.location.reload() | window.scrollTo({top: 0}))}>로그아웃</SLink>
-                </Column>
+                {isLoggedIn && 
+                    <Column>
+                        <Link to="/mypage" style={{color: "black", textDecoration: "none"}}>
+                            <SLink>마이페이지</SLink>
+                        </Link>
+                        <SLink onClick={() => (removeCookie('token', {path: '/'}) | window.location.reload() | window.scrollTo({top: 0}))}>로그아웃</SLink>
+                    </Column>
+                }
             </Wrap2>
         </SFooter>
     )
