@@ -26,7 +26,8 @@ export default function Mypage({userInfo}) {
 
     useEffect(() => {
         getAuctions()
-    }, [])
+        if (userInfo.userId === undefined) window.location.href = '/'
+    }, [userInfo.userId])
 
     function sorting() {
         if (sortSelected === 2) {
