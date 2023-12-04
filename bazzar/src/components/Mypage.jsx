@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import { customAxios } from "../customAxios"
+import { removeCookie } from "../cookies";
 import styled, { keyframes } from "styled-components"
 import AuctionCard from "./AuctionCard"
 import DarkerBulb from '../images/bulbmeter/darker.svg';
@@ -62,8 +63,14 @@ export default function Mypage({userInfo}) {
         return LighterBulb;
     }
 
+    function logOut() {
+        removeCookie('token', {path: '/'})
+        window.location.href = '/'
+    }
+
     return (
         <SAuction>
+            <SLink onClick={() => logOut()}>로그아웃</SLink>
             <Wraper>
                 <TypeList>
                     <Type
@@ -110,7 +117,7 @@ export default function Mypage({userInfo}) {
 const SAuction = styled.div`
     min-width: max-content;
     max-width: 100%;
-    padding: 80px 100px;
+    padding: 60px 100px 80px;
     font-family: 'pretendard';
 `
 
@@ -248,3 +255,12 @@ const NoData = styled.p`
     font-size: 20px;
     line-height: 12px;
 `
+
+const SLink = styled.div`
+    width: fit-content;
+    margin: 0 5% 0 auto;
+    font-size: 20px;
+    text-align: right;
+    cursor: pointer;
+    color: #9A9A9A;
+`;
