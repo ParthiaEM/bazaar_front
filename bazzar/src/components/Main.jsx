@@ -8,7 +8,7 @@ import { useEffect } from "react"
 import { customAxios } from "../customAxios"
 import AuctionList from "./AuctionList"
 
-export default function Main() {
+export default function Main({isLoggedIn}) {
     const [show, setShow] = useState(false)
     const [auctions, setAuctions] = useState([])
     const [typeSelected, setTypeSelected] = useState(1)
@@ -35,7 +35,7 @@ export default function Main() {
                 <MainButton src={mainButton} onClick={() => setShow(true)} />
             </MainImg>
             <AuctionList auctions={auctions} typeSelected={typeSelected} setTypeSelected={setTypeSelected} />
-            <Footer setTypeSelected={setTypeSelected} />
+            <Footer setTypeSelected={setTypeSelected} isLoggedIn={isLoggedIn} />
             {show && <GetStarted close={setShow} ids={auctionIDs} />}
         </SMain>
     )
