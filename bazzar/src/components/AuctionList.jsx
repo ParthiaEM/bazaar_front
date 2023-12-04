@@ -212,5 +212,5 @@ const SImg = styled.img`
 
 const NoData = styled.p`
     font-size: 20px;
-    line-height: 16px;
+    line-height: 12px;
 `
