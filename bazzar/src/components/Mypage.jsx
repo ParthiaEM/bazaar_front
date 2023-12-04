@@ -127,7 +127,7 @@ const Bulbmeter = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 12px 0;
+    padding: 12px 60px;
     border: 1px solid black;
     border-radius: 0 20px 20px 0;
     width: 60%;
