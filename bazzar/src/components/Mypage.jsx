@@ -75,6 +75,12 @@ export default function Mypage({userInfo}) {
         window.location.href = '/'
     }
 
+    function limit(lux) {
+        if (lux > 500) return 500
+        if (lux < 0) return 0
+        return lux
+    }
+
     return (
         <SAuction>
             <SLink onClick={() => logOut()}>로그아웃</SLink>
@@ -110,8 +116,8 @@ export default function Mypage({userInfo}) {
                         <Box>
                             <Number><Span>0</Span><Span>500</Span></Number>
                             <Gauge />
-                            <Pointer src={PointerSVG} $lux={userInfo.lux} />
-                            <MyLux $lux={userInfo.lux}>{userInfo.lux} lux</MyLux>
+                            <Pointer src={PointerSVG} $lux={limit(userInfo.lux)} />
+                            <MyLux $lux={limit(userInfo.lux)}>{userInfo.lux} lux</MyLux>
                         </Box>
                     </BulbMeter>
                 }
@@ -211,6 +217,8 @@ const Pointer = styled.img`
 `
 
 const MyLux = styled.div`
+    width: 13%;
+    text-align: center;
     font-size: 24px;
     font-weight: bold;
     margin-left: calc(${props => (props.$lux / 500) * 100 + "%"} - 40px);
