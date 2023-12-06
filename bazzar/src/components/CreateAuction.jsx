@@ -15,6 +15,7 @@ export default function CreateAuction({isLoggedIn}) {
 
     function By500(s) {
         s = parseInt(s)
+        if (s <= 499) return 0
         s += 500 - s%500
         s -= 500
         return s
