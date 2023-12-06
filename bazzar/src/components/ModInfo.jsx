@@ -40,7 +40,7 @@ export default function ModInfo({userInfo}) {
                 window.location.reload()
             })
             .catch(function (error) {
-                if (error.response.request.status === 409) {
+                if (error.response.status === 409) {
                     setAlert(2)
                 }
             })
@@ -52,7 +52,7 @@ export default function ModInfo({userInfo}) {
     }, [id, account, bank, userInfo])
 
     useEffect(() => {
-        if (alert === 2 || (alert === 1 && id.length !== 0)) setAlert(0)
+        if (alert === 1 && id.length !== 0) setAlert(0)
     }, [id, alert])
 
     useEffect(() => {
