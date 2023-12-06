@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { Link } from "react-router-dom"
 
 export default function Complete({say}) {
@@ -30,15 +30,25 @@ const SComplete = styled.div`
     z-index: 10;
 `
 
+const slide = keyframes`
+    0% {
+        margin-top: -300px;
+    }
+    100% {
+        margin-top: calc(50vh - 150px);
+    }
+`
+
 const SBox = styled.div`
-    width: 400px;
-    height: 280px;
+    width: 500px;
+    height: 300px;
     margin: auto 0;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    animation: ${slide} 0.5s ease forwards;
 `
 
 const BoxHeader = styled.div`
@@ -64,6 +74,10 @@ const Button = styled.div`
     height: 60px;
     border-radius: 30px;
     font-size: 20px;
-    background-color: #FFEEE8;
+    background-color: #FDF8F5;
     cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+        background-color: #FFEEE8;
+    }
 `

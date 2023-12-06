@@ -164,12 +164,12 @@ export default function MyAuction() {
                             </Coins>
                             <Span>{toPrice(ideaData.price)} ₩</Span>
                             {ideaData.count === 0 ?
-                                <Button1>입찰을 기다려주세요</Button1> :
+                                <Block>입찰을 기다려주세요</Block> :
                             ideaData.isTrading ?
                                 <Button onClick={() => setShowModal(2)}>낙찰하기</Button> :
                             ideaData.purchasedUserId === 0 ?
                                 <Button onClick={() => setShowModal(3)}>공개하기</Button> :
-                                <Button1>공개가 완료됐어요</Button1>
+                                <Block>공개가 완료됐어요</Block>
                             }
                         </Bid>
                     </Side1>
@@ -356,9 +356,20 @@ const Button = styled.div`
     line-height: 48px;
     border-radius: 24px;
     cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+        background-color: #FFEEE8;
+    }
 `
 
-const Button1 = styled(Button)`
+const Block = styled.div`
+    background-color: #FDF7F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    line-height: 48px;
+    border-radius: 24px;
     width: 70%;
     color: #9A9A9A;
     cursor: default;

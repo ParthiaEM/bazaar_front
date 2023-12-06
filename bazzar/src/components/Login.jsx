@@ -166,6 +166,11 @@ const Selected = styled.div`
     font-size: 20px;
     line-height: 44px;
     border-bottom: 1px solid black;
+    transition: 0.1s;
+    &:hover {
+        margin-top: -6px;
+        line-height: 50px;
+    }
 `;
 
 const Unselected = styled.div`
@@ -176,6 +181,11 @@ const Unselected = styled.div`
     font-size: 20px;
     line-height: 44px;
     color: #9a9a9a;
+    transition: 0.1s;
+    &:hover {
+        margin-top: -6px;
+        line-height: 50px;
+    }
 `;
 
 const SForm = styled.form`
@@ -228,6 +238,10 @@ const Submit = styled.button`
     font-size: 20px;
     padding: 8px;
     cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+        background-color: #FDF8F5;
+    }
 `;
 
 const Empty = styled.div`

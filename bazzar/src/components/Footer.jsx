@@ -103,6 +103,9 @@ const SLink = styled.div`
     @media (max-width: 1150px) {
         line-height: 28px;
     }
+    &:hover {
+        font-weight: bold;
+    }
 `;
 
 const Column1 = styled.div`

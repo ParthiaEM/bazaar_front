@@ -26,6 +26,11 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
     const [purchasedUser, setPurchasedUser] = useState({})
     const [show, setShow] = useState(false)
     const [evaluate, setEvaluate] = useState(0)
+    const [lux, setLux] = useState(0)
+
+    useEffect(() => {
+        if (postedUser.lux !== undefined) setLux(postedUser.lux)
+    }, [postedUser])
 
     async function getUser(IdeaData) {
         await customAxios
@@ -135,7 +140,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                     <Side>
                         <Line>
                             <Span>{postedUser.userId}</Span>
-                            <Span>{postedUser.lux} lux<Bulb src={toBulb(postedUser.lux)} /></Span>
+                            <Span>{lux} lux<Bulb src={toBulb(postedUser.lux)} /></Span>
                             <Field src={toIcon(ideaData.ideaField)} />
                         </Line>
                         <Title>{ideaData.ideaName}</Title>
@@ -196,7 +201,7 @@ export default function OthersAuction({isLoggedIn, userInfo}) {
                 </Wrap>
             </Column>
             {show && <Payment close={setShow} userUniqueId={ideaData.postedUserId} price={ideaData.price} />}
-            {evaluate === 1 && <Evaluate close={setEvaluate} id={ideaData.postedUserId} />}
+            {evaluate === 1 && <Evaluate close={setEvaluate} id={ideaData.postedUserId} setLux={setLux} />}
         </SAuction>
     )
 }
@@ -400,7 +405,7 @@ const Empty1 = styled.div`
 
 const Button = styled.div`
     width: 50%;
-    background-color: #FFEEE8;
+    background-color: #FDF7F5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -408,11 +413,14 @@ const Button = styled.div`
     line-height: 48px;
     border-radius: 24px;
     cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+        background-color: #FFEEE8;
+    }
 `
 
 const Button1 = styled(Button)`
     width: 40%;
-    background-color: #FDF7F5;
 `
 
 const Plus = styled.div`

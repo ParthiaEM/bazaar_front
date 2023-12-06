@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { customAxios } from "../customAxios";
 import Complete from "./Complete";
 
@@ -21,7 +21,7 @@ export default function OpenIdea({close, id}) {
                 <BoxHeader>낙찰자에게 아이디어를 공개할까요?</BoxHeader>
                 <Wrap>
                     <Button onClick={() => close(0)}>아니오</Button>
-                    <Button1 onClick={() => open()}>네</Button1>
+                    <Button onClick={() => open()}>네</Button>
                 </Wrap>
                 <Span>낙찰자의 결제를 확인한 후 진행해주세요</Span>
             </SBox>
@@ -45,6 +45,15 @@ const SGetStarted = styled.div`
     z-index: 10;
 `
 
+const slide = keyframes`
+    0% {
+        margin-top: -300px;
+    }
+    100% {
+        margin-top: calc(50vh - 150px);
+    }
+`
+
 const SBox = styled.div`
     width: 500px;
     height: 300px;
@@ -53,6 +62,7 @@ const SBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    animation: ${slide} 0.5s ease forwards;
 `;
 
 const BoxHeader = styled.div`
@@ -80,12 +90,12 @@ const Button = styled.div`
     height: 60px;
     border-radius: 30px;
     font-size: 20px;
-    background-color: #FFEEE8;
+    background-color: #FDF8F5;
     cursor: pointer;
-`
-
-const Button1 = styled(Button)`
-    background-color: #FDF7F5;
+    transition: 0.1s;
+    &:hover {
+        background-color: #FFEEE8;
+    }
 `
 
 const Span = styled.div`

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import VeryGood from '../images/veryGood.svg'
 import Good from '../images/good.svg'
 import Soso from '../images/soso.svg'
@@ -6,8 +6,10 @@ import Bad from '../images/bad.svg'
 import VeryBad from '../images/veryBad.svg'
 import { customAxios } from "../customAxios"
 
-export default function Evaluate({close, id}) {
+export default function Evaluate({close, id, setLux}) {
     async function evaluate(n) {
+        setLux(bf => bf + n)
+
         const DTO = {
             "lux": n,
         }
@@ -60,11 +62,21 @@ const SGetStarted = styled.div`
     z-index: 10;
 `
 
+const slide = keyframes`
+    0% {
+        margin-top: -280px;
+    }
+    100% {
+        margin-top: calc(50vh - 140px);
+    }
+`
+
 const SBox = styled.div`
     width: 600px;
     height: 280px;
     margin: auto 0;
     background-color: #ffffff;
+    animation: ${slide} 0.5s ease forwards;
 `;
 
 const BoxHeader = styled.div`

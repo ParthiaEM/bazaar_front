@@ -82,6 +82,7 @@ export default function CreateAuction({isLoggedIn}) {
                         name="startPrice"
                         placeholder="500원 단위로 작성해주세요."
                         type="number"
+                        step="500"
                         onChange={e => (setStartBid(By500(e.target.value)))}
                         onBlur={e => change(e)}
                     />
@@ -102,7 +103,7 @@ export default function CreateAuction({isLoggedIn}) {
                         <Link to="/" style={{color: "black", textDecoration: "none"}}>
                             <Button>등록 취소</Button>
                         </Link>
-                        {isLoggedIn ? <Button1 onClick={e => createAuction(e)}>경매 올리기</Button1> : <Button2>로그인이 필요합니다</Button2>}
+                        {isLoggedIn ? <Button onClick={e => createAuction(e)}>경매 올리기</Button> : <Button2>로그인이 필요합니다</Button2>}
                     </Buttons>
                 </Column>
             </SForm>
@@ -188,18 +189,18 @@ const Button = styled.div`
     justify-content: center;
     text-align: center;
     padding: 16px 32px;
-    background-color: #FFEEE8;
+    background-color: #FDF8F5;
     font-size: 20px;
     border-radius: 30px;
     cursor: pointer;
     word-break: keep-all;
+    transition: 0.1s;
+    &:hover {
+        background-color: #FFEEE8;
+    }
 `
 
-const Button1 = styled(Button)`
-    background-color: #FDF7F5;
-`
-
-const Button2 = styled(Button1)`
+const Button2 = styled(Button)`
     color: lightgray;
     cursor: default;
 `

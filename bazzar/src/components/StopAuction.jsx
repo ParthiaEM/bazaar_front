@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { getCookie } from "../cookies";
 import { customAxios } from "../customAxios";
 import Complete from "./Complete";
@@ -22,7 +22,7 @@ export default function StopAuction({close, id}) {
                 <BoxHeader>정말 경매를 취소하고 삭제할까요?</BoxHeader>
                 <Wrap>
                     <Button onClick={() => close(0)}>아니오</Button>
-                    <Button1 onClick={() => stopAuction()}>네</Button1>
+                    <Button onClick={() => stopAuction()}>네</Button>
                 </Wrap>
                 <Span>누적된 입찰액이 사라집니다</Span>
             </SBox>
@@ -46,14 +46,23 @@ const SGetStarted = styled.div`
     z-index: 10;
 `
 
+const slide = keyframes`
+    0% {
+        margin-top: -300px;
+    }
+    100% {
+        margin-top: calc(50vh - 150px);
+    }
+`
+
 const SBox = styled.div`
     width: 500px;
     height: 300px;
-    margin: auto 0;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    animation: ${slide} 0.5s ease forwards;
 `;
 
 const BoxHeader = styled.div`
@@ -81,12 +90,12 @@ const Button = styled.div`
     height: 60px;
     border-radius: 30px;
     font-size: 20px;
-    background-color: #FFEEE8;
+    background-color: #FDF8F5;
     cursor: pointer;
-`
-
-const Button1 = styled(Button)`
-    background-color: #FDF7F5;
+    transition: 0.1s;
+    &:hover {
+        background-color: #FFEEE8;
+    }
 `
 
 const Span = styled.div`

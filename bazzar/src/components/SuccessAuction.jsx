@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { customAxios } from "../customAxios";
 import Complete from "./Complete";
 import Close from '../images/close.svg';
@@ -38,9 +38,12 @@ export default function SuccessAuction({close, id, bidder, price}) {
                     <Column>
                         <Img src={Gavel} onClick={() => setCount(bf => bf+1)} />
                         <Row>
-                            <Img1 src={count >= 1 ? On : Off} />
+                            {count >= 1 ? <Img2 src={On} /> : <Img1 src={Off} />}
+                            {count >= 2 ? <Img2 src={On} /> : <Img1 src={Off} />}
+                            {count >= 3 ? <Img2 src={On} /> : <Img1 src={Off} />}
+                            {/* <Img1 src={count >= 1 ? On : Off} />
                             <Img1 src={count >= 2 ? On : Off} />
-                            <Img1 src={count >= 3 ? On : Off} />
+                            <Img1 src={count >= 3 ? On : Off} /> */}
                         </Row>
                     </Column>
                 </Wrap>
@@ -77,14 +80,23 @@ const Empty = styled.div`
     margin: 20px;
 `;
 
+const slide = keyframes`
+    0% {
+        margin-top: -300px;
+    }
+    100% {
+        margin-top: calc(50vh - 150px);
+    }
+`
+
 const SBox = styled.div`
     width: 500px;
     height: 300px;
-    margin: auto 0;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    animation: ${slide} 0.5s ease forwards;
 `;
 
 const BoxHeader = styled.div`
@@ -134,6 +146,10 @@ const Img = styled.img`
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
+    &:hover {
+        width: 104px;
+        margin-top: -4px;
+    }
 `
 
 const Img1 = styled.img`
@@ -143,6 +159,19 @@ const Img1 = styled.img`
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
+`
+
+const blink = keyframes`
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 20px;
+    }
+`
+
+const Img2 = styled(Img1)`
+    animation: ${blink} 0.5s ease forwards;
 `
 
 const Row = styled.div`

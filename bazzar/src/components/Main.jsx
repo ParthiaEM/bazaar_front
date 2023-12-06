@@ -42,7 +42,7 @@ export default function Main({isLoggedIn}) {
 }
 
 const SMain = styled.div`
-    width: 100vw;
+    width: 100%;
 `
 
 const MainImg = styled.div`

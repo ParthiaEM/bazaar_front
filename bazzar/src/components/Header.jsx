@@ -79,6 +79,9 @@ const LoginButton = styled.button`
     background: none;
     font-size: 20px;
     cursor: pointer;
+    &:hover {
+        font-weight: bold;
+    }
 `;
 
 const Wrap = styled.div`
@@ -96,6 +99,9 @@ const StartAuctionButton = styled.button`
     font-size: 20px;
     cursor: pointer;
     word-break: keep-all;
+    &:hover {
+        font-weight: bold;
+    }
 `;
 
 const AccountInfo = styled.button`
@@ -106,6 +112,9 @@ const AccountInfo = styled.button`
     font-size: 20px;
     cursor: pointer;
     text-decoration: underline;
+    &:hover {
+        font-weight: bold;
+    }
 `;
 
 const Gray = styled.span`

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import Close from '../images/close.svg';
 import { useState } from "react";
 import { customAxios } from "../customAxios";
@@ -63,11 +63,21 @@ const Empty = styled.div`
     margin: 20px;
 `;
 
+const slide = keyframes`
+    0% {
+        margin-top: -300px;
+    }
+    100% {
+        margin-top: calc(50vh - 150px);
+    }
+`
+
 const SBox = styled.div`
-    width: 600px;
-    height: 280px;
+    width: 500px;
+    height: 300px;
     margin: auto 0;
     background-color: #ffffff;
+    animation: ${slide} 0.5s ease forwards;
 `;
 
 const BoxHeader = styled.div`

@@ -24,7 +24,7 @@ export default function GetStarted(props) {
                     </Coulmn>
                     <Coulmn>
                         <Link to={randId} style={{color: "black", textDecoration: "none"}}>
-                            <Button1>경매 참여하기</Button1>
+                            <Button>경매 참여하기</Button>
                         </Link>
                         <Span>새로운 아이디어로 프로젝트를 하고싶은 분들에게 추천</Span>
                     </Coulmn>
@@ -102,12 +102,12 @@ const Button = styled.div`
     height: 60px;
     border-radius: 30px;
     font-size: 20px;
-    background-color: #FFEEE8;
+    background-color: #FDF8F5;
     cursor: pointer;
-`
-
-const Button1 = styled(Button)`
-    background-color: #FDF7F5;
+    transition: 0.1s;
+    &:hover {
+        background-color: #FFEEE8;
+    }
 `
 
 const Span = styled.div`
