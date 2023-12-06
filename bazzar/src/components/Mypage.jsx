@@ -53,6 +53,11 @@ export default function Mypage({userInfo}) {
                     .map((data, key) =>
                         <AuctionCard key={key} data={data} />
                     )
+            else if (auctions.filter(data => !data.isTrading && data.bidUserId === userInfo.userUniqueId).length !== 0)
+                return auctions.filter(data => !data.isTrading && data.bidUserId === userInfo.userUniqueId)
+                    .map((data, key) =>
+                        <AuctionCard key={key} data={data} />
+                    )
             else return (<NoData>내가 낙찰받은 아이디어가 없어요</NoData>)
         }
     }
