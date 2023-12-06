@@ -10,6 +10,7 @@ import NormalBulb from '../images/bulbmeter/normal.svg';
 import LightBulb from '../images/bulbmeter/light.svg';
 import LighterBulb from '../images/bulbmeter/lighter.svg';
 import PointerSVG from '../images/pointer.svg';
+import ModInfo from "./ModInfo";
 
 export default function Mypage({userInfo}) {
     const [sortSelected, setSortSelected] = useState(1)
@@ -30,7 +31,7 @@ export default function Mypage({userInfo}) {
     }, [userInfo.userId])
 
     function sorting() {
-        if (sortSelected === 2) {
+        if (sortSelected === 3) {
             if (auctions.filter(data => data.postedUserId === userInfo.userUniqueId).length !== 0)
                 return auctions.filter(data => data.postedUserId === userInfo.userUniqueId)
                     .map((data, key) =>
@@ -38,7 +39,7 @@ export default function Mypage({userInfo}) {
                     )
             else return (<NoData>내가 올린 아이디어가 없어요</NoData>)
         }
-        if (sortSelected === 3) {
+        if (sortSelected === 4) {
             if (auctions.filter(data => data.bidUserId === userInfo.userUniqueId && data.isTrading).length !== 0)
                 return auctions.filter(data => data.bidUserId === userInfo.userUniqueId && data.isTrading)
                     .map((data, key) =>
@@ -46,7 +47,7 @@ export default function Mypage({userInfo}) {
                     )
             else return (<NoData>내가 입찰한 아이디어가 없어요</NoData>)
         }
-        if (sortSelected === 4) {
+        if (sortSelected === 5) {
             if (auctions.filter(data => data.purchasedUserId === userInfo.userUniqueId).length !== 0)
                 return auctions.filter(data => data.purchasedUserId === userInfo.userUniqueId)
                     .map((data, key) =>
@@ -82,19 +83,23 @@ export default function Mypage({userInfo}) {
                     <Type
                         onClick={() => setSortSelected(2)}
                         $select={sortSelected === 2 ? "#FFEEE8" : "#FDF7F5"}
-                    ><Span>내가 올린 아이디어</Span></Type>
+                    >정보 수정하기</Type>
                     <Type
                         onClick={() => setSortSelected(3)}
                         $select={sortSelected === 3 ? "#FFEEE8" : "#FDF7F5"}
+                    ><Span>내가 올린 아이디어</Span></Type>
+                    <Type
+                        onClick={() => setSortSelected(4)}
+                        $select={sortSelected === 4 ? "#FFEEE8" : "#FDF7F5"}
                     ><Span>내가 입찰한 아이디어</Span></Type>
                     <Type
                         $round="bottom"
-                        onClick={() => setSortSelected(4)}
-                        $select={sortSelected === 4 ? "#FFEEE8" : "#FDF7F5"}
+                        onClick={() => setSortSelected(5)}
+                        $select={sortSelected === 5 ? "#FFEEE8" : "#FDF7F5"}
                     ><Span>내가 낙찰받은 아이디어</Span></Type>
                 </TypeList>
                 {sortSelected === 1 &&
-                    <Bulbmeter>
+                    <BulbMeter>
                         <Title>나의 벌브미터</Title>
                         <Bulb src={getBulb()} />
                         <Box>
@@ -103,9 +108,12 @@ export default function Mypage({userInfo}) {
                             <Pointer src={PointerSVG} $lux={userInfo.lux} />
                             <MyLux $lux={userInfo.lux}>{userInfo.lux} lux</MyLux>
                         </Box>
-                    </Bulbmeter>
+                    </BulbMeter>
                 }
-                {sortSelected !== 1 &&
+                {sortSelected === 2 &&
+                    <ModInfo userInfo={userInfo} />
+                }
+                {sortSelected > 2 &&
                     <AList>
                         {sorting()}
                     </AList>
@@ -125,22 +133,23 @@ const SAuction = styled.div`
 const Wraper = styled.div`
     width: 100%;
     display: flex;
-    @media (max-width: 700px) {
+    @media (max-width: 750px) {
         flex-direction: column;
         gap: 0;
     }
 `
 
-const Bulbmeter = styled.div`
+const BulbMeter = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     padding: 12px 60px;
     border: 1px solid black;
     border-radius: 0 20px 20px 0;
     width: 60%;
     gap: 28px;
-    @media (max-width: 700px) {
+    @media (max-width: 750px) {
         width: auto;
         border-radius: 0 0 20px 20px;
     }
@@ -152,7 +161,7 @@ const Title = styled.div`
 `
 
 const Bulb = styled.img`
-    height: 200px;
+    height: 140px;
 `
 
 const Box = styled.div`
@@ -169,7 +178,7 @@ const Number = styled.div`
 
 const Gauge = styled.div`
     width: 100%;
-    height: 60px;
+    height: 40px;
     background: linear-gradient(270deg, #FFDA00 0%, #F5F5F5 100%);
     box-shadow: 0 0 0 4px black inset;
 `
@@ -213,7 +222,7 @@ const AList = styled.div`
     border-radius: 0 20px 20px 0;
     width: 60%;
     gap: 28px;
-    @media (max-width: 700px) {
+    @media (max-width: 750px) {
         width: auto;
         border-radius: 0 0 20px 20px;
     }
@@ -223,7 +232,7 @@ const TypeList = styled.div`
     display: flex;
     flex-direction: column;
     width: 30%;
-    @media (max-width: 700px) {
+    @media (max-width: 750px) {
         width: auto;
     }
 `
@@ -239,7 +248,7 @@ const Type = styled.div`
     display: flex;
     justify-content: space-between;
     border-radius: ${(props) => props.$round === "top" ? "20px 0 0 0" : props.$round === "bottom" ? "0 0 0 20px" : ""};
-    @media (max-width: 700px) {
+    @media (max-width: 750px) {
         border-radius: ${(props) => props.$round === "top" ? "20px 20px 0 0" : "0"}
     }
     transition: 0.1s;
