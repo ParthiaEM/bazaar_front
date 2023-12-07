@@ -3,7 +3,7 @@ import { useState } from "react"
 import { customAxios } from "../customAxios"
 import { removeCookie } from "../cookies";
 import styled, { keyframes } from "styled-components"
-import AuctionCard from "./AuctionCard"
+import CardInMypage from "./MypageCard"
 import DarkerBulb from '../images/bulbmeter/darker.svg';
 import DarkBulb from '../images/bulbmeter/dark.svg';
 import NormalBulb from '../images/bulbmeter/normal.svg';
@@ -35,7 +35,7 @@ export default function Mypage({userInfo}) {
             if (auctions.filter(data => data.postedUserId === userInfo.userUniqueId).length !== 0)
                 return auctions.filter(data => data.postedUserId === userInfo.userUniqueId)
                     .map((data, key) =>
-                        <AuctionCard key={key} data={data} />
+                        <CardInMypage key={key} data={data} />
                     )
             else return (<NoData>내가 올린 아이디어가 없어요</NoData>)
         }
@@ -43,7 +43,7 @@ export default function Mypage({userInfo}) {
             if (auctions.filter(data => data.bidUserId === userInfo.userUniqueId && data.isTrading).length !== 0)
                 return auctions.filter(data => data.bidUserId === userInfo.userUniqueId && data.isTrading)
                     .map((data, key) =>
-                        <AuctionCard key={key} data={data} />
+                        <CardInMypage key={key} data={data} />
                     )
             else return (<NoData>내가 입찰한 아이디어가 없어요</NoData>)
         }
@@ -51,12 +51,12 @@ export default function Mypage({userInfo}) {
             if (auctions.filter(data => data.purchasedUserId === userInfo.userUniqueId).length !== 0)
                 return auctions.filter(data => data.purchasedUserId === userInfo.userUniqueId)
                     .map((data, key) =>
-                        <AuctionCard key={key} data={data} />
+                        <CardInMypage key={key} data={data} />
                     )
             else if (auctions.filter(data => !data.isTrading && data.bidUserId === userInfo.userUniqueId).length !== 0)
                 return auctions.filter(data => !data.isTrading && data.bidUserId === userInfo.userUniqueId)
                     .map((data, key) =>
-                        <AuctionCard key={key} data={data} />
+                        <CardInMypage key={key} data={data} />
                     )
             else return (<NoData>내가 낙찰받은 아이디어가 없어요</NoData>)
         }
@@ -180,7 +180,6 @@ const Box = styled.div`
 `
 
 const Number = styled.div`
-    width: 100%;
     display: flex;
     justify-content: space-between;
     font-size: 24px;
@@ -217,11 +216,11 @@ const Pointer = styled.img`
 `
 
 const MyLux = styled.div`
-    width: 13%;
+    width: 120px;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    margin-left: calc(${props => (props.$lux / 500) * 100 + "%"} - 40px);
+    margin-left: calc(${props => (props.$lux / 500) * 100 + "%"} - 60px);
     animation: ${slide2} 1s ease forwards;
     opacity: 1;
 `
@@ -246,12 +245,11 @@ const TypeList = styled.div`
     flex-direction: column;
     width: 30%;
     @media (max-width: 750px) {
-        width: auto;
+        width: 100%;
     }
 `
 
 const Type = styled.div`
-    width: auto;
     background-color: ${(props) => props.$select};
     padding: 20px 40px;
     font-size: 20px;
@@ -266,7 +264,8 @@ const Type = styled.div`
     }
     transition: 0.1s;
     &:hover {
-        padding: 24px 40px;
+        margin-left: 12px;
+        padding-left: 28px;
         background-color: #FFEEE8;
     };
 `

@@ -152,6 +152,10 @@ const Border = styled.div`
     border-radius: 0 20px 20px 0;
     width: 60%;
     gap: 28px;
+    transition: 0.3s;
+    @media (max-width: 800px) {
+        padding: 20px;
+    }
     @media (max-width: 750px) {
         width: auto;
         border-radius: 0 0 20px 20px;
