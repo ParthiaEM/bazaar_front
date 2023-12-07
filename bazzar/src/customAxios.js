@@ -1,5 +1,5 @@
 import axios from 'axios';
-const SERVER_ADDRESS = 'https://port-0-bazaar-backend-1gksli2alphjrcb7.sel5.cloudtype.app/'
+const SERVER_ADDRESS = process.env.REACT_APP_BACKEND_ADDRESS;
 
 axios.defaults.withCredentials = true;
 
