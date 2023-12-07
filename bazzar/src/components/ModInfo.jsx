@@ -24,11 +24,12 @@ export default function ModInfo({userInfo}) {
             return
         }
 
-        const userInfo = {
-            "userId" : id,
+        const newUserInfo = {
             "userAccount" : bank+' '+account,
         }
-        postUserInfo(userInfo)
+        if (id !== userInfo.userId) newUserInfo["userId"] = id
+
+        postUserInfo(newUserInfo)
     }
 
     async function postUserInfo(newUserInfo) {
