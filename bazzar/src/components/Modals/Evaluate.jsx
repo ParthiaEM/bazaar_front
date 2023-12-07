@@ -1,10 +1,10 @@
 import styled, { keyframes } from "styled-components"
-import VeryGood from '../images/veryGood.svg'
-import Good from '../images/good.svg'
-import Soso from '../images/soso.svg'
-import Bad from '../images/bad.svg'
-import VeryBad from '../images/veryBad.svg'
-import { customAxios } from "../customAxios"
+import VeryGood from '../../images/eval/veryGood.svg'
+import Good from '../../images/eval/good.svg'
+import Soso from '../../images/eval/soso.svg'
+import Bad from '../../images/eval/bad.svg'
+import VeryBad from '../../images/eval/veryBad.svg'
+import { customAxios } from "../../customAxios"
 
 export default function Evaluate({close, id, setLux}) {
     async function evaluate(n) {

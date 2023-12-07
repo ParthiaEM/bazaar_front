@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import Auction from './components/Auction.jsx';
-import CreateAuction from './components/CreateAuction.jsx';
-import Header from './components/Header.jsx';
-import Main from './components/Main.jsx';
-import Mypage from './components/Mypage.jsx';
+import Auction from './components/AuctionPage/Auction.jsx';
+import CreateAuction from './components/MainPage/CreateAuction.jsx';
+import Header from './components/Static/Header.jsx';
+import Main from './components/MainPage/Main.jsx';
+import Mypage from './components/MyPage/Mypage.jsx';
 import { getCookie } from './cookies.js';
 import { customAxios } from './customAxios.js';
 

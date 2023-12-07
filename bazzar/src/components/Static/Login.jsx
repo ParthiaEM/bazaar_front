@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import Reveal from '../images/password/reveal.svg';
-import Hide from '../images/password/hide.svg';
-import Close from '../images/close.svg';
-import { customAxios } from '../customAxios';
-import { setCookie } from '../cookies';
+import Reveal from '../../images/password/reveal.svg';
+import Hide from '../../images/password/hide.svg';
+import Close from '../../images/icon/close.svg';
+import { customAxios } from '../../customAxios';
+import { setCookie } from '../../cookies';
 
 export default function Login(props) {
     const [isHide, setIsHide] = useState(true)

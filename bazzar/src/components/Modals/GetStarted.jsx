@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components"
-import Close from '../images/close.svg';
+import Close from '../../images/icon/close.svg';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 

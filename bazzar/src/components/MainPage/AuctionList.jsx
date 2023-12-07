@@ -1,10 +1,10 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import styled from "styled-components"
-import AppIcon from '../images/type/app.svg'
-import GameIcon from '../images/type/game.svg'
-import IoTIcon from '../images/type/iot.svg'
-import WebIcon from '../images/type/web.svg'
+import AppIcon from '../../images/type/app.svg'
+import GameIcon from '../../images/type/game.svg'
+import IoTIcon from '../../images/type/iot.svg'
+import WebIcon from '../../images/type/web.svg'
 import AuctionCard from "./AuctionCard"
 
 export default function AuctionList({auctions, typeSelected, setTypeSelected}) {

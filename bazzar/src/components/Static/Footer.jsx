@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import Parthia from "../images/parthia.svg"
-import Logo from '../images/logo.svg';
-import { removeCookie } from "../cookies";
+import Parthia from "../../images/main/parthia.svg"
+import Logo from '../../images/main/logo.svg';
+import { removeCookie } from "../../cookies";
 import { Link } from 'react-router-dom';
 
 export default function Footer({setTypeSelected, isLoggedIn}) {

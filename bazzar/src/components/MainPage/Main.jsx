@@ -1,11 +1,11 @@
 import styled from "styled-components"
-import Footer from "./Footer"
-import mainImage from "../images/main.svg"
-import mainButton from "../images/button.svg"
+import Footer from "../Static/Footer"
+import mainImage from "../../images/main/main.svg"
+import mainButton from "../../images/main/button.svg"
 import { useState } from "react"
-import GetStarted from "./GetStarted"
+import GetStarted from "../Modals/GetStarted"
 import { useEffect } from "react"
-import { customAxios } from "../customAxios"
+import { customAxios } from "../../customAxios"
 import AuctionList from "./AuctionList"
 
 export default function Main({isLoggedIn}) {
@@ -50,7 +50,7 @@ const MainImg = styled.div`
     height: fit-content;
     display: flex;
     justify-content: center;
-    background-image: url("../images/main.svg");
+    background-image: url("../../images/main.svg");
     background-size: cover;
     background-position: center;
 `

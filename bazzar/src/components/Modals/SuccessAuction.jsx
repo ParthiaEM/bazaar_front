@@ -1,11 +1,11 @@
 import { useState } from "react";
 import styled, { keyframes } from "styled-components"
-import { customAxios } from "../customAxios";
+import { customAxios } from "../../customAxios";
 import Complete from "./Complete";
-import Close from '../images/close.svg';
-import Gavel from '../images/gavel.svg';
-import Off from '../images/off.svg';
-import On from '../images/on.svg';
+import Close from '../../images/icon/close.svg';
+import Gavel from '../../images/success/gavel.svg';
+import Off from '../../images/success/off.svg';
+import On from '../../images/success/on.svg';
 import { useEffect } from "react";
 
 export default function SuccessAuction({close, id, bidder, price}) {

@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components"
-import Close from '../images/close.svg';
+import Close from '../../images/icon/close.svg';
 import { useState } from "react";
-import { customAxios } from "../customAxios";
+import { customAxios } from "../../customAxios";
 import { useEffect } from "react";
 
 export default function Payment({close, userUniqueId, price}) {

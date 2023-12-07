@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled, { keyframes } from "styled-components"
-import { customAxios } from "../customAxios";
+import { customAxios } from "../../customAxios";
 import Complete from "./Complete";
 
 export default function OpenIdea({close, id}) {

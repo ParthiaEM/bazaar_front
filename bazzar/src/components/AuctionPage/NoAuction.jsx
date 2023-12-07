@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components"
-import Parthia from "../images/parthia.svg"
-import Logo from "../images/logo.svg"
+import Parthia from "../../images/main/parthia.svg"
+import Logo from "../../images/main/logo.svg"
 import { Link } from "react-router-dom"
 
 export default function NoAuction() {

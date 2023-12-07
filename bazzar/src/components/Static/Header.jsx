@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import Logo from '../images/logo.svg';
-import DarkerBulb from '../images/bulbmeter/darker.svg';
-import DarkBulb from '../images/bulbmeter/dark.svg';
-import NormalBulb from '../images/bulbmeter/normal.svg';
-import LightBulb from '../images/bulbmeter/light.svg';
-import LighterBulb from '../images/bulbmeter/lighter.svg';
+import Logo from '../../images/main/logo.svg';
+import DarkerBulb from '../../images/bulbmeter/darker.svg';
+import DarkBulb from '../../images/bulbmeter/dark.svg';
+import NormalBulb from '../../images/bulbmeter/normal.svg';
+import LightBulb from '../../images/bulbmeter/light.svg';
+import LighterBulb from '../../images/bulbmeter/lighter.svg';
 import { useState } from 'react';
 import Registration from './Registration';
 import Login from './Login';

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled, { keyframes } from "styled-components"
-import { getCookie } from "../cookies";
-import { customAxios } from "../customAxios";
+import { getCookie } from "../../cookies";
+import { customAxios } from "../../customAxios";
 import Complete from "./Complete";
 
 export default function StopAuction({close, id}) {

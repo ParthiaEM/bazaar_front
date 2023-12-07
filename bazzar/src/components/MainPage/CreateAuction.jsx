@@ -1,9 +1,9 @@
 import { useState } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { getCookie } from "../cookies"
-import { customAxios } from "../customAxios"
-import Complete from "./Complete"
+import { getCookie } from "../../cookies"
+import { customAxios } from "../../customAxios"
+import Complete from "../Modals/Complete"
 
 export default function CreateAuction({isLoggedIn}) {
     const [detail, setDetail] = useState("")

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { customAxios } from "../customAxios"
+import { customAxios } from "../../customAxios"
 import MyAuction from "./MyAuction"
 import NoAuction from "./NoAuction"
 import OthersAuction from "./OthersAuction"

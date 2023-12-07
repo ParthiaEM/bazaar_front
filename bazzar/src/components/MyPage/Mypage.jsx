@@ -1,15 +1,15 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { customAxios } from "../customAxios"
-import { removeCookie } from "../cookies";
+import { customAxios } from "../../customAxios"
+import { removeCookie } from "../../cookies";
 import styled, { keyframes } from "styled-components"
 import CardInMypage from "./MypageCard"
-import DarkerBulb from '../images/bulbmeter/darker.svg';
-import DarkBulb from '../images/bulbmeter/dark.svg';
-import NormalBulb from '../images/bulbmeter/normal.svg';
-import LightBulb from '../images/bulbmeter/light.svg';
-import LighterBulb from '../images/bulbmeter/lighter.svg';
-import PointerSVG from '../images/pointer.svg';
+import DarkerBulb from '../../images/bulbmeter/darker.svg';
+import DarkBulb from '../../images/bulbmeter/dark.svg';
+import NormalBulb from '../../images/bulbmeter/normal.svg';
+import LightBulb from '../../images/bulbmeter/light.svg';
+import LighterBulb from '../../images/bulbmeter/lighter.svg';
+import PointerSVG from '../../images/icon/pointer.svg';
 import ModInfo from "./ModInfo";
 
 export default function Mypage({userInfo}) {

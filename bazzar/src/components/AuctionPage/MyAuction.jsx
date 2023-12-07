@@ -2,21 +2,21 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import styled, { keyframes } from "styled-components"
-import { customAxios } from "../customAxios"
-import DarkerBulb from '../images/bulbmeter/darker.svg'
-import DarkBulb from '../images/bulbmeter/dark.svg'
-import NormalBulb from '../images/bulbmeter/normal.svg'
-import LightBulb from '../images/bulbmeter/light.svg'
-import LighterBulb from '../images/bulbmeter/lighter.svg'
-import AppIcon from '../images/type/app.svg'
-import GameIcon from '../images/type/game.svg'
-import IoTIcon from '../images/type/iot.svg'
-import WebIcon from '../images/type/web.svg'
-import CoinSVG from '../images/coin.svg'
-import StopAuction from "./StopAuction"
-import { getCookie } from "../cookies"
-import SuccessAuction from "./SuccessAuction"
-import OpenIdea from "./OpenIdea"
+import { customAxios } from "../../customAxios"
+import { getCookie } from "../../cookies"
+import DarkerBulb from '../../images/bulbmeter/darker.svg'
+import DarkBulb from '../../images/bulbmeter/dark.svg'
+import NormalBulb from '../../images/bulbmeter/normal.svg'
+import LightBulb from '../../images/bulbmeter/light.svg'
+import LighterBulb from '../../images/bulbmeter/lighter.svg'
+import AppIcon from '../../images/type/app.svg'
+import GameIcon from '../../images/type/game.svg'
+import IoTIcon from '../../images/type/iot.svg'
+import WebIcon from '../../images/type/web.svg'
+import CoinSVG from '../../images/auction/coin.svg'
+import StopAuction from "../Modals/StopAuction"
+import SuccessAuction from "../Modals/SuccessAuction"
+import OpenIdea from "../Modals/OpenIdea"
 
 export default function MyAuction() {
     const {id} = useParams()

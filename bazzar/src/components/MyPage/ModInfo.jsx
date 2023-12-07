@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { customAxios } from '../customAxios';
+import { customAxios } from '../../customAxios';
 
 export default function ModInfo({userInfo}) {
     const [id, setId] = useState(userInfo.userId)
