@@ -54,6 +54,10 @@ const SHeader = styled.div`
     display: flex;
     justify-content: space-between;
     font-family: 'Pretendard';
+    transition: 0.3s;
+    @media (max-width: 700px) {
+        padding: 0 40px;
+    }
 `;
 
 const SLogo = styled.img`

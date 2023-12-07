@@ -50,16 +50,20 @@ export default function AuctionCard({data}) {
     return (
         <Link to={"/auction/"+data.ideaId} style={{color: "black", textDecoration: "none"}}>
             <SAuction>
-                <Span>{data.ideaName}</Span>
-                <Span>{postedUser.lux} lux<SImg src={toBulb(postedUser.lux)} /></Span>
-                <Span>₩ {toPrice(data.price)}</Span>
-                <SImg src={toIcon(data.ideaField)} />
+                <Title>{data.ideaName}</Title>
+                <Wrap>
+                    <Span>{postedUser.lux} lux</Span>
+                    <Span><SImg src={toBulb(postedUser.lux)} /></Span>
+                    <Span>₩ {toPrice(data.price)}</Span>
+                    <SImg src={toIcon(data.ideaField)} />
+                </Wrap>
             </SAuction>
         </Link>
     )
 }
 
 const SAuction = styled.div`
+    width: calc(100% - 40px);
     background-color: #FDF7F5;
     display: flex;
     justify-content: space-between;
@@ -67,34 +71,57 @@ const SAuction = styled.div`
     font-size: 20px;
     line-height: 52px;
     border-radius: 12px;
-    gap: 20px;
-    @media (max-width: 900px) {
+    cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+        margin: 0 -4px 0 4px;
+        background-color: #FFEEE8;
+        border-radius: 50px;
+    };
+    @media (max-width: 1110px) {
         flex-direction: column;
         gap: 10px;
         line-height: 32px;
         align-items: center;
         padding: 20px;
     }
-    cursor: pointer;
-    transition: 0.1s;
-    &:hover {
-        margin: 0 -4px 0 4px;
-        background-color: #FFEEE8;
-    };
 `
 
-const Span = styled.span`
+const Title = styled.div`
+    width: 45%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @media (max-width: 1110px) {
+        width: 80%;
+        justify-content: center;
+    }
+`
+
+const Wrap = styled.div`
     display: flex;
-    gap: 20px;
-    max-width: 30vw;
-    min-width: 20%;
+    justify-content: space-between;
+    width: 50%;
+    @media (max-width: 1110px) {
+        width: 90%;
+    }
+    @media (max-width: 620px) {
+        display: none;
+    }
+`
+
+const Span = styled.div`
+    display: flex;
+    align-items: center;
+    &:nth-child(3) {
+        width: 100px;
+    }
 `
 
 const SImg = styled.img`
-    width: fit-content;
     height: 40px;
     margin: auto 0;
-    @media (max-width: 900px) {
+    @media (max-width: 1110px) {
         height: 28px;
     }
     -webkit-user-drag: none;

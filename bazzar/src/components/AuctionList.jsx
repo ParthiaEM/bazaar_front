@@ -103,8 +103,7 @@ export default function AuctionList({auctions, typeSelected, setTypeSelected}) {
 }
 
 const SAuction = styled.div`
-    min-width: max-content;
-    max-width: 100%;
+    width: calc(100% - 200px);
     padding: 80px 100px;
     font-family: 'pretendard';
 `
@@ -114,9 +113,8 @@ const SortButtons = styled.div`
     gap: 40px;
     width: fit-content;
     margin-bottom: 40px;
-    @media (max-width: 700px) {
-        flex-direction: column;
-        gap: 20px;
+    @media (max-width: 900px) {
+        gap: 10px;
         width: 100%;
         justify-content: center;
         align-items: center;
@@ -126,27 +124,22 @@ const SortButtons = styled.div`
 const SortButton = styled.button`
     border: none;
     border-radius: 30px;
-    height: 44px;
-    padding: 0 20px;
+    padding: 12px 20px;
     font-size: 16px;
+    word-break: keep-all;
     background-color: ${(props) => props.$select};
     cursor: pointer;
     transition: 0.1s;
     &:hover {
-        margin: -4px 0;
+        margin: 0 -4px 0 4px;
         background-color: #FFEEE8;
-    };
-    @media (max-width: 700px) {
-        &:hover {
-            margin: 0 -4px 0 4px;
-        }
     };
 `
 
 const Wraper = styled.div`
     width: 100%;
     display: flex;
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
         flex-direction: column;
         gap: 0;
     }
@@ -159,9 +152,9 @@ const AList = styled.div`
     padding: 60px;
     border: 1px solid black;
     border-radius: 20px 0 0 20px;
-    width: 60%;
+    width: calc(100% - 340px);
     gap: 28px;
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
         width: auto;
         border-radius: 20px 20px 0 0;
     }
@@ -170,14 +163,10 @@ const AList = styled.div`
 const TypeList = styled.div`
     display: flex;
     flex-direction: column;
-    width: 30%;
-    @media (max-width: 700px) {
-        width: auto;
-    }
 `
 
 const Type = styled.div`
-    width: auto;
+    width: 140px;
     background-color: ${(props) => props.$select};
     padding: 20px 40px;
     font-size: 20px;
@@ -186,17 +175,22 @@ const Type = styled.div`
     display: flex;
     justify-content: space-between;
     border-radius: ${(props) => props.$round === "top" ? "0 20px 0 0" : props.$round === "bottom" ? "0 0 20px 0" : ""};
-    @media (max-width: 700px) {
-        border-radius: ${(props) => props.$round === "bottom" ? "0 0 20px 20px" : "0"}
-    }
     transition: 0.1s;
     &:hover {
-        line-height: 48px;
         background-color: #FFEEE8;
-        :last-child {
-            height: 48px;
-        }
+        width: 160px;
+        margin-right: -20px;
+        border-radius: 0 20px 20px 0;
     };
+    @media (max-width: 900px) {
+        width: auto;
+        border-radius: ${(props) => props.$round === "bottom" ? "0 0 20px 20px" : "0"};
+        &:hover {
+            background-color: #FFEEE8;
+            width: 90%;
+            border-radius: 0 20px 20px 0;
+        };
+    }
 `
 
 const Span = styled.span`
