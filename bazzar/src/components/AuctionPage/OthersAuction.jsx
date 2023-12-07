@@ -363,29 +363,42 @@ const Empty = styled.div`
     height: 40px;
 `
 
-const fade = keyframes`
-    0% {
-        opacity: 0;
-    };
-    100% {
-        opacity: 1;
-    };
-`
-
 const Coins = styled.div`
     width: 60%;
     height: 70%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: end;
+`
+
+const fade = keyframes`
+    0% {
+        opacity: 0;
+        margin-top: 100px;
+    };
+    70% {
+        opacity: 1;
+    };
+    100% {
+        opacity: 1;
+    }
 `
 
 const Coin = styled.img`
     opacity: 0;
     width: 80px;
     margin-top: -24px;
-    animation: ${fade} 1s 0.1s ease-out forwards;
+    &:nth-child(1) { animation: ${fade} 1s 0.1s ease-out forwards; }
+    &:nth-child(2) { animation: ${fade} 1s 0.2s ease-out forwards; }
+    &:nth-child(3) { animation: ${fade} 1s 0.3s ease-out forwards; }
+    &:nth-child(4) { animation: ${fade} 1s 0.4s ease-out forwards; }
+    &:nth-child(5) { animation: ${fade} 1s 0.5s ease-out forwards; }
+    &:nth-child(6) { animation: ${fade} 1s 0.6s ease-out forwards; }
+    &:nth-child(7) { animation: ${fade} 1s 0.7s ease-out forwards; }
+    &:nth-child(8) { animation: ${fade} 1s 0.8s ease-out forwards; }
+    &:nth-child(9) { animation: ${fade} 1s 0.9s ease-out forwards; }
+    &:nth-child(10) { animation: ${fade} 1s 1s ease-out forwards; }
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
