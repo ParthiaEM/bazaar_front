@@ -276,6 +276,11 @@ const Span = styled.span`
 const NoData = styled.p`
     font-size: 20px;
     line-height: 12px;
+    @media (max-width: 820px) {
+        width: 170px;
+        line-height: 20px;
+        word-break: keep-all;
+    }
 `
 
 const SLink = styled.div`
