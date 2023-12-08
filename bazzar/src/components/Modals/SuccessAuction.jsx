@@ -41,9 +41,6 @@ export default function SuccessAuction({close, id, bidder, price}) {
                             {count >= 1 ? <Img2 src={On} /> : <Img1 src={Off} />}
                             {count >= 2 ? <Img2 src={On} /> : <Img1 src={Off} />}
                             {count >= 3 ? <Img2 src={On} /> : <Img1 src={Off} />}
-                            {/* <Img1 src={count >= 1 ? On : Off} />
-                            <Img1 src={count >= 2 ? On : Off} />
-                            <Img1 src={count >= 3 ? On : Off} /> */}
                         </Row>
                     </Column>
                 </Wrap>
@@ -117,7 +114,7 @@ const Wrap = styled.div`
 `
 
 const Column = styled.div`
-    width: 160px;
+    width: 180px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -138,6 +135,15 @@ const Span1 = styled.div`
     word-break: keep-all;
 `
 
+const hit = keyframes`
+    50% {
+        transform: translateY(10px) rotate(-45deg);
+    }
+    100% {
+        transform: translateY(-40px);
+    }
+`
+
 const Img = styled.img`
     width: 100px;
     margin: auto;
@@ -146,9 +152,13 @@ const Img = styled.img`
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
+    transition: 0.2s;
     &:hover {
-        width: 104px;
-        margin-top: -4px;
+        transform: translateY(-40px);
+    }
+    &:active {
+        transform-origin: 40% right;
+        animation: ${hit} 0.2s forwards;
     }
 `
 
@@ -163,15 +173,18 @@ const Img1 = styled.img`
 
 const blink = keyframes`
     0% {
-        height: 0px;
+        transform: scale(2);
+    }
+    90% {
+        transform: scale(0.8);
     }
     100% {
-        height: 20px;
+        transform: scale(1);
     }
 `
 
 const Img2 = styled(Img1)`
-    animation: ${blink} 0.5s ease forwards;
+    animation: ${blink} 0.2s ease forwards;
 `
 
 const Row = styled.div`
